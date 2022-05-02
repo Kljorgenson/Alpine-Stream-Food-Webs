@@ -1,7 +1,7 @@
 ### Teton Isotope Plots
 # By Karen Jorgenson
 
-What
+
 ## Setup
 library(dplyr)
 library(plyr)
@@ -12,7 +12,7 @@ library(readxl)
 library(tidyr)
 library(tidyverse)
 
-# blah
+
 setwd("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//SIF data//MixSIAR")
 
 ## Organize data
