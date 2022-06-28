@@ -5,6 +5,7 @@ This contains the data and code necessary to replicate the findings from my thes
 R scripts that must be run in order:
 Trophic position.R
 MixSIAR diet loop.R
+Clean diet data.R 
 PCA.R 
 Diversity 2020.R
 Diet environ compilation.R
