@@ -11,29 +11,23 @@ library(data.table)
 library(tidyr)
 library(grid)
 
-setwd("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//SIF data//MixSIAR//MixSIAR loop output")
-
 ### Create data frame
-# load raw isotope data
-iso_dat <- read.csv("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//SIF data//MixSIAR//Teton_Iso_Data_QC.csv") 
+# Load raw isotope data
+iso_dat <- read.csv("Data//Teton_Iso_Data_QC.csv") 
 head(iso_dat)
 
-# merge trophic position data
-dat_TP <- read.csv("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//SIF data//MixSIAR//Trophic Position//TP_dat.csv")  
+# Merge trophic position data
+dat_TP <- read.csv("Output//TP_dat.csv")  
 head(dat_TP)
 dat_2 <- merge(iso_dat, dat_TP, by = c("d13C", "d15N"), all = TRUE ) %>% mutate(group = as.factor(group), site = as.factor(site)) 
 head(dat_2)
 
-
-
-# set all non predatory data to TP = 2
+# Set all non predatory data to TP = 2
 dat_2$TP <- ifelse(dat_2$group %in% c("Clinocera", "Sweltsa", "Lednia", "Megarcys", "Rhyacophila", "Simuliidae", "Turbellaria", "Ameletidae", "Baetidae"), dat_2$TP_calc, 2)
 dat_3<- dat_2 %>% filter(TP < 2.5 | NA)
 head(dat_3)
 
-dat_3
-
-# calculate means and standard errors for each group*site
+# Calculate means and standard errors for each group*site
 iso_means <- dat_3 %>%  group_by(group, site) %>% filter(date2 == "A", !site %in% "Gusher") %>%
   summarise( type = type,
     n = length(group),
@@ -43,13 +37,17 @@ iso_means <- dat_3 %>%  group_by(group, site) %>% filter(date2 == "A", !site %in
             SDd15N = sd(d15N, na.rm = TRUE) ) %>% unique()
 iso_means
 
+# Minimum and Maximum C isotope values for each source
 iso_means %>% ungroup() %>% filter(group == "CPOM/Plant") %>% summarize(max = max(Meand13C),
                                                        min = min(Meand13C))
+iso_means %>% ungroup() %>% filter(group == "Biofilm") %>% summarize(max = max(Meand13C),
+                                                                        min = min(Meand13C))
+iso_means %>% ungroup() %>% filter(group == "Hydrurus") %>% summarize(max = max(Meand13C),
+                                                                        min = min(Meand13C))
 ### MixSIAR loop
 
 site <- c("Wind Cave", "Skillet", "SFTC", "AK Basin", "Delta", "NFTC", "Cloudveil", "Grizzly", "Paintbrush")
-site <- c("Wind Cave")
-# Redo: Skillet, AK
+site <- c("Wind Cave") # Select individual site
 
 for( i in site){
 
@@ -93,7 +91,7 @@ discr
 
 # isospace plot
 plot_data(filename=paste("iso_plot", i, sep = "_"), plot_save_pdf=FALSE, plot_save_png=FALSE, mix,source,discr)
-}
+
 # Default generalist prior (alpha = 1)
 plot_prior(alpha.prior=1,source)
 
@@ -104,7 +102,7 @@ process_err <- TRUE
 write_JAGS_model(model_filename, resid_err, process_err, mix, source)
 
 # Run model
-jags.1 <- run_model(run="long", mix, source, discr, model_filename, 
+jags.1 <- run_model(run="normal", mix, source, discr, model_filename,  # Adjust run length as needed
                           alpha.prior = 1, resid_err, process_err)
 
 # Analyze diagnostics and output
@@ -129,9 +127,9 @@ output_options <- list(summary_save = TRUE,
                              plot_pairs_save_png = FALSE,
                              plot_xy_save_png = FALSE) 
 
-#output_JAGS(jags.1, mix, source, output_options)
+output_JAGS(jags.1, mix, source, output_options)
 
-#graphics.off()
+graphics.off()
 }
 
 
@@ -145,11 +143,9 @@ data_diet <- data_d %>% filter(!V1 %in% c("Epsilon.1", "Epsilon.2")) %>%
   separate(V1, into = c(NA, "taxa", "source"), sep = '[.]')
 names(data_diet) <- c("site", "taxa", "source", "Mean", "SD",  "p2.5", "p5", "p25", "p50", "p75", "p95", "p97.5")
 data_diet %>% filter(site == "Grizzly")
-write.csv(data_diet, "Diet_proportions_all.csv")
+write.csv(data_diet, "Output//Diet_proportions_all.csv")
 
-data_diet <- read.csv("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//SIF data//MixSIAR//Environ variables//diet_data_clean.csv")
-
-
+data_diet <- read.csv("Output//Diet_proportions_all.csv")
 ### Plot of all diet proportions across sites
 # Reorder site factor levels
 data_diet$site <- factor(data_diet$site, 
@@ -168,7 +164,7 @@ p_wrap <- data_diet %>% ggplot(aes(Mean, reorder(taxa, desc(taxa)), color = sour
 p_wrap
 
 # Color facet labels by water source
-png("diet props all Bunn.png", width = 7, height = 7, units = "in", res = 200)
+png("Output//Paper figures//Diet props all.png", width = 7, height = 7, units = "in", res = 200)
 g <- ggplot_gtable(ggplot_build(p_wrap))
 stripr <- which(grepl('strip-t', g$layout$name))
 fills <- c("#6baed6", "#6baed6", "#6baed6", "#08306b", "#08306b", "#6baed6", "#2171b5","#2171b5","#2171b5")

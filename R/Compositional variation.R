@@ -1,6 +1,7 @@
 ### Composition variation
 # By Karen Jorgenson
 
+# Setup
 library(plyr)
 library(dplyr)
 library(ggplot2)
@@ -9,13 +10,10 @@ library(compositions)
 library(ggtern)
 library(mvnormtest)
 
-
-setwd("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//SIF data//MixSIAR//Environ variables")
-
 ## organize data
-Envi_data <- read.csv("Envi_data.csv")
+Envi_data <- read.csv("Output//Envi_data.csv")
 
-diet_data <- read.csv("diet_data_clean.csv")
+diet_data <- read.csv("Output//diet_data_clean.csv")
 
 diet_means_data <- diet_data %>% group_by(site, source) %>% summarise(Mean = mean(Mean, na.rm = TRUE,
                                                                                   SD = sd(Mean, na.rm = TRUE)))
@@ -101,10 +99,10 @@ t1 <- spread_env_dat %>% filter(taxa %in% c("Allomyia", "Homophylax", "Lednia", 
   theme_bw() + theme(legend.position= c(0.2,.7)) +
   scale_fill_manual(values = cols, name = "Taxa")
 t1
-ggsave("taxa diet tern.png", width = 6, height = 6)
+ggsave("Output//taxa diet tern.png", width = 6, height = 6)
 
-# Ternary plot with all taxa colored by stream type
 
+## Ternary plot with all taxa colored by stream type
 
 w_source_means <- spread_env_mean_dat %>% group_by(Primary_water_source) %>% summarise(Biofilm = mean(Biofilm),
                                                                      CPOM = mean(CPOM),
@@ -118,7 +116,7 @@ t1 <- spread_env_dat %>%
   geom_point(data = w_source_means, aes(Biofilm, CPOM, Hydrurus, fill = Primary_water_source), pch = 21, cex = 7, show.legend = FALSE) +
   scale_fill_manual(values = c("#2171b5", "#9ecae1", "#08306b"))
 t1
-ggsave("taxa diet tern WS.png", width = 6, height = 6)
+ggsave("Output//Paper figures//taxa diet tern WS.png", width = 6, height = 6)
 
 # Ternary plot of most common taxa colored by stream type
 datws <-spread_env_dat %>% group_by(taxa, Primary_water_source) %>% summarise(Biofilm = mean(Biofilm),
@@ -127,7 +125,7 @@ datws <-spread_env_dat %>% group_by(taxa, Primary_water_source) %>% summarise(Bi
 
 t2 <- datws %>% filter(taxa %in% c("Allomyia", "Ameletidae", "Baetidae", "Homophylax", "Lednia", "Midges", "Simuliidae", "Tipula", "Zapada")) %>% ggtern(aes(Biofilm, CPOM, Hydrurus, color = Primary_water_source, shape = taxa)) + geom_point()
 t2
-ggsave("taxa diet tern.png")
+ggsave("Output//taxa diet tern.png")
 
 
 # Ternary plot of among-site taxa means
@@ -137,7 +135,7 @@ taxa_means
 
 t4 <- taxa_means %>% ggtern(aes(Biofilm, CPOM, Hydrurus, color = taxa)) + geom_point()
 t4
-ggsave("taxa mean diet tern.png")
+ggsave("Output//taxa mean diet tern.png")
 
 ## Max and min resource use for Lednia and Zapada
 spread_env_dat %>% filter(taxa == "Lednia")

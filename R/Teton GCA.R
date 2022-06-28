@@ -1,16 +1,16 @@
 ### Gut content analysis
 # By Karen Jorgenson
 
+# Setup
 library(plyr)
 library(readxl)
 library(tidyverse)
 library(readxl)
-
-setwd("C:/Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//GCA")
+library(grid)
 
 # load data
-GCA_areas <- read_xlsx("GCA areas.xlsx")
-ID <- read_xlsx("GCA slides.xlsx")
+GCA_areas <- read_xlsx("Data//GCA slide areas.xlsx")
+ID <- read_xlsx("Data//GCA slides.xlsx")
 
 GCA_da <- merge(GCA_areas, ID, by.x = 1, by.y = 1, all.x = TRUE) %>% 
   select("ID", "source", "per_area", "taxa", "site") %>%
@@ -40,21 +40,8 @@ GCA_dat %>% filter(site == "SFTC", taxa == "Sweltsa") %>% print(n=32)
 tail(GCA_data)
 unique(GCA_dat$taxa)
 
-write.csv(GCA_data, "GCA_data.csv")
+write.csv(GCA_data, "Output//GCA_data.csv")
 
-GCA_data <- read.csv("GCA_data.csv")
-
-# Facet plot of all sites
-p_wrap <- GCA_data %>% filter(site != "Gusher", per_assim != 0) %>% ggplot(aes(per_assim, taxa, color = source)) + 
-  geom_point(aes(pch = source),cex = 2, stroke = 1.5) +
-  facet_wrap(~ site, ncol = 4) + geom_errorbar(aes(xmin=per_assim-sd, xmax=per_assim+sd), width=1) +
-  geom_text(aes(115, taxa, label = n), color = 1, cex = 3) +
-  scale_x_continuous(breaks=c(0,25,50, 75, 100)) + labs( x = "Diet Proportion", y = "Taxa", color = "Source", shape = "Source") +
-  scale_shape_manual(values=c(3,4,1,2,6), labels = c("Animal", "Diatoms", "Filamentous algae", "Hydrurus", "Plant")) + 
-  scale_color_manual(labels = c("Animal", "Diatoms", "Filamentous algae", "Hydrurus", "Plant"), values = c("#1B9E77", "#D95F02", "#7570B3", "#66A61E", "#E6AB02", "#A6761D")) +
-  theme_bw()
-
-p_wrap
 
 # Plot with stacked bars
 GCA_data$site <- as.factor(GCA_data$site)
@@ -77,8 +64,8 @@ p_wrap <- GCA_data %>% filter(site != "Gusher", source != "Other") %>% ggplot(ae
 
 p_wrap
 
-library(grid)
-png("GCA facet stacked.png", width = 7, height = 8, units = "in", res = 200)
+
+png("Output//Paper figures//GCA facet stacked.png", width = 7, height = 8, units = "in", res = 200)
 g <- ggplot_gtable(ggplot_build(p_wrap))
 stripr <- which(grepl('strip-t', g$layout$name))
 fills <- c("#6baed6", "#6baed6", "#6baed6", "#6baed6", "#2171b5","#2171b5", "#08306b", "#08306b")

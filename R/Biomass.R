@@ -56,37 +56,20 @@ bm_dat_site <- diet_bm_dat %>% group_by(site) %>% summarise(biomass_s = sum(biom
 bm_dat <- merge(site_bm, bm_dat_site, all = TRUE)                                                                
 bm_dat$biomass_per <- bm_dat$biomass_ss/bm_dat$biomass_s # % Biomass by resource
 
-# add zeroes for Hydrurus
+# Add zeroes for Hydrurus
 site <- c("SFTC", "Grizzly", "Paintbrush")
 
 Hy_add <- data.frame(site = c("SFTC", "Grizzly", "Paintbrush"),  source = rep("Hydrurus", 3), biomass_per = rep(0, 3))
 
 bm_data <- dplyr::bind_rows(bm_dat, Hy_add)
 
-# load environmental data and merge
-Envi_data <- read.csv("Data//Envi_data.csv")
+# Load environmental data and merge
+Envi_data <- read.csv("Output//Envi_data.csv")
 Envi_data
 bm_envi_dat <- merge(Envi_data, bm_data, all = TRUE)
 
-# make data long
-bm_envi_dat_long <- bm_envi_dat %>% gather(env_var, value, Elevation:H)
-bm_envi_dat_long %>% filter(source == "Hydrurus")
-# facet plot
-env_var_labs <- c("Chla (mg/m2)", "Chloride (ug/L)", "DO (mg/)L", "Elevation (m)", "Nitrate (ug/L)", "PCA1", "PCA2", "pH", "SPC", "Sulfate (ug/L)", "Tmax (C)", "TSS (g/L)")
-names(env_var_labs) <- c("Chla_mg_m2", "chloride", "DO_mg_L", "Elevation", "nitrate", "PCA1", "PCA2", "pH", "SPC", "sulfate", "Tmax", "TSS_g_L")
 
-p <- bm_envi_dat_long %>% filter(env_var %in% c("Chla_mg_m2", "chloride", "DO_mg_L", "Elevation", "nitrate", "PCA1", "PCA2", "pH", "SPC", "sulfate", "Tmax", "TSS_g_L")) %>%
-  ggplot() +
-  geom_point(aes(value, biomass_per, color = source, pch = site)) + 
-  geom_smooth(aes(value, biomass_per, color = source), method='lm') + ylab("% Biomass") +
-  scale_shape_manual(values=1:10) + theme_bw() + facet_wrap(~env_var, scales = "free_x", labeller = labeller(env_var = env_var_labs)) +
-  theme(axis.title.x=element_blank())
-p
-
-ggsave("Biomass envi.png")
-
-
-# plot of site means for different water sources
+# Plot of site means for different water sources
 dodge <- position_dodge(width=0.8)
 p2 <- bm_envi_dat %>% ggplot(aes(Primary_water_source, biomass_per, fill = source)) + geom_boxplot(position = dodge) +
   geom_point(position = dodge, shape = 21, cex = 2) + theme_bw() +
@@ -95,17 +78,16 @@ p2 <- bm_envi_dat %>% ggplot(aes(Primary_water_source, biomass_per, fill = sourc
   ylab("Biomass (%)") + labs(fill = "Resource")
 p2
 
-ggsave("Biomass by hydro.png", height = 4, width = 5)
+ggsave("Output//Paper figures//Biomass by hydro.png", height = 4, width = 5)
 
 ### Dirichlet regression
-# data
+# Organize data
 spread_bm_dat <- bm_envi_dat %>% select(site, source, biomass_per) %>% spread(key = source, value = biomass_per) 
-#spread_bm_dat[is.na(spread_bm_dat)] <- 0.001
 spread_bm_dat
 spread_bm_envi_dat <- merge(spread_bm_dat, Envi_data, all = TRUE)
 spread_bm_envi_dat
 
-# plot
+# Plot
 ggtern(spread_bm_envi_dat, aes(Biofilm, Hydrurus, CPOM, color = Primary_water_source)) + geom_point()
 
 # model
@@ -178,14 +160,14 @@ AICc_b <- data.frame(Formula = c("~ SPC", "~ Tmean", "~ Tmax", "~ pH", "~ nitrat
                                                                                                                                                                             AIC_c(m7b), AIC_c(m8b), AIC_c(m9b), AIC_c(m10b), AIC_c(m12b), AIC_c(m13b), AIC_c(m6b), AIC_c(m14b),AIC_c(m16.2b), AIC_c(m20b), AIC_c(m21b)))
 AICc_b
 
-# table of AIC values for significant models
-#Significant: Tmax, pH, nitrate, DO, aspect and chloride
+# Table of AIC values for significant models
+# Significant: Tmax, pH, nitrate, DO, aspect and chloride
 AICc_b <- AICc_b %>% filter(!Formula %in% c("~ Tmax", "~ DO", "~ pH", "~ nitrate", "~ aspect", "~ slope", "~ elevation", "~ sulfate", "~ PCA1", "~ PCA2"))                                                                                                                                               
 AICc_b$AICc <- round(AICc_b$AICc, 1)
 AICc_B<-AICc_b[order(AICc_b$AICc),]
 AICc_B
 
-write.csv(AICc, "AICc biomass table.csv")
+write.csv(AICc, "Output//AICc biomass table.csv")
 
 ### facet plot
 
@@ -247,7 +229,7 @@ p <- ggplot(data = env_dat_long, aes(value, Mean, color = source)) +
   scale_color_brewer("Resource", palette = "Dark2") + theme_bw() + ylab("% Biomass") +
   scale_linetype_manual(values=c("dashed", "solid"), guide = "none") + xlab(NULL)
 p
-ggsave("Dirichlet envi facet biomass.png", width = 5, height = 4)
+ggsave("Output//Paper figures//Dirichlet envi facet biomass.png", width = 5, height = 4)
 
 
 

@@ -1,22 +1,18 @@
-library(tRophicPosition)
+### Calculate trophic position
+# By Karen Jorgenson
+
+# Setup
 library(tidyverse)
+library(dplyr)
 library(ggplot2)
 library(RColorBrewer)
 
-# Examples
-#browseVignettes("tRophicPosition")
-
-# Clear environment and plots
-rm(list = ls()) # environment
-graphics.off() #plots
-
-# set wd
-setwd("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//SIF data//MixSIAR//Trophic Position")
+#setwd("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Github//Alpine-Stream-Food-Webs")
 
 ## Creat dataframe
 
 # load isotope data. Filter for invert, select columns, concatenate site and group
-dat <- read.csv("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//SIF data//MixSIAR//Teton_Iso_Data_QC.csv")
+dat <- read.csv("Data//Teton_Iso_Data_QC.csv")
 TP_dat <- dat %>% filter(type == "invert") %>% select("group", "site", "d15N", "d13C", "FG") %>% mutate(group = as.factor(group), site = as.factor(site), FG = as.factor(FG)) %>% 
   data.frame() %>% na.omit() %>% rename(Site = "site", Group = "group", FG = "FG", d15N = "d15N", d13C = "d13C")
 
@@ -53,14 +49,10 @@ TP_dat$base_N = with(TP_dat, ifelse(Site == "AKBasin" , b_avg$mean_N[1],
 
 TP_dat$base_N
 head(TP_dat)
-filter(TP_dat, Site == "Paintbrush")
 
 # calculate TP with one baseline formula
 
-# N TEF
-TEF <- 3.4
-
-
+TEF <- 3.4 # N TEF
 head(TP_dat)
 TP_calc <- 2 + (TP_dat$d15N - TP_dat$base_N)/TEF
 
@@ -68,26 +60,10 @@ TP_calc <- 2 + (TP_dat$d15N - TP_dat$base_N)/TEF
 TP_dat$TP_calc <- TP_calc
 
 head(TP_dat)
-write.csv(TP_dat, "TP_dat.csv")
+write.csv(TP_dat, "Output//TP_dat.csv")
 
-TP_dat <- read.csv("TP_dat.csv")
 
-# plot by site
-
-# all sites
-Site <- unique(TP_dat$Site)
-
-for(i in Site){
-#png(file= paste( i, "TPs.png"))
-p <- TP_dat %>% filter(Site == i) %>% ggplot(aes(Group, TP_calc)) + geom_boxplot() + 
-        geom_point()  + geom_abline(slope=0, intercept = 2.5, linetype = 3) + 
-  theme(axis.text.x = element_text(angle = 90))
-ggsave(paste( i, "TPs.png"), plot = p)
-
-#dev.off()
- }
-    
-
+# Plot with all sites
 p3 <- TP_dat %>% filter(Site != "Gusher") %>% ggplot(aes(Group, TP_calc)) + geom_boxplot() + 
   geom_point(aes(color= Site))  + geom_abline(slope=0, intercept = 2.5, linetype = 3) + 
   ylab("Trophic Position") + xlab("Taxon") +
@@ -95,7 +71,7 @@ p3 <- TP_dat %>% filter(Site != "Gusher") %>% ggplot(aes(Group, TP_calc)) + geom
   theme_bw() + theme(axis.text.x = element_text(angle = 90))
 p3
 
-ggsave(paste( "TPs by taxa.png"), plot = p3, width = 7, height = 5)
+ggsave("Output//Paper figures//TPs by taxa.png", plot = p3, width = 7, height = 5)
 
 
 

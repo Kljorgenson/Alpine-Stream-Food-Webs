@@ -13,16 +13,14 @@ library(tidyr)
 library(tidyverse)
 
 
-setwd("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//SIF data//MixSIAR")
-
 ## Organize data
-iso_dat <- read.csv("Teton_Iso_Data_QC.csv")
+iso_dat <- read.csv("Data//Teton_Iso_Data_QC.csv")
 head(iso_dat)
 names(iso_dat)
 iso_inv <- iso_dat %>% filter(type == "invert")
 
 # Merge trophic position data
-dat_TP <- read.csv("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//SIF data//MixSIAR//Trophic Position//TP_dat.csv")  
+dat_TP <- read.csv("Output//TP_dat.csv")  
 head(dat_TP)
 iso_TP <- merge(iso_inv, dat_TP, by = c("d13C", "d15N"), all = TRUE ) %>% mutate(group = as.factor(group), site = as.factor(site)) 
 head(iso_TP)
