@@ -1,17 +1,15 @@
 ### Teton Invert Biomass
+# Calculation and models
 # Karen Jorgenson
 
 # Setup
 library(tidyverse)
-library(viridis)
 library(DirichletReg)
 library(ggtern)
 
-setwd("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//SIF data//MixSIAR//Biomass")
-
 ## Create dataframe with diet proportions and biomass
 # Load diversity data
-div_d <- read.csv("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//Diversity//TetonInverts2020.csv")
+div_d <- read.csv("Data//TetonInverts2020.csv")
 head(div_d)
 
 # Change taxa to match diet taxonomic groups
@@ -34,7 +32,7 @@ levels(div_dat$site) <- c("AK Basin",  "Cloudveil", "Delta", "Grizzly", "Middle 
 "Paintbrush", "SFTC", "Skillet", "South Cascade RG", "The Gusher", "Wind Cave") 
 
 # Merge biomass and diet proportions data
-data_di <- read.csv("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//SIF data//MixSIAR//Environ variables//diet_data_clean.csv")
+data_di <- read.csv("Data//diet_data_clean.csv")
 data_di$site <- as.factor(data_di$site)
 levels(data_di$site) <- c("AK Basin","Cloudveil","Delta","Grizzly","NFTC", "Paintbrush", "SFTC", "Skillet", "Wind Cave" )
 head(data_di)
@@ -43,10 +41,7 @@ diet_bm_dat <- merge(data_di, div_dat)
 head(diet_bm_dat)
 diet_bm_dat$Biomass_mg_m2 <- as.numeric(diet_bm_dat$Biomass_mg_m2)
 
-diet_bm_dat %>% filter(site == "Cloudveil", source == "Biofilm") %>% summarise(sum = sum(Biomass_mg_m2, na.rm = TRUE))
-
 ## Calculate biomass supported by each food source
-
 diet_bm_dat$biomass_t = diet_bm_dat$Biomass_mg_m2*diet_bm_dat$Mean # Biomass per source per taxa
 head(diet_bm_dat)
 div_dat
@@ -61,9 +56,6 @@ bm_dat_site <- diet_bm_dat %>% group_by(site) %>% summarise(biomass_s = sum(biom
 bm_dat <- merge(site_bm, bm_dat_site, all = TRUE)                                                                
 bm_dat$biomass_per <- bm_dat$biomass_ss/bm_dat$biomass_s # % Biomass by resource
 
-write.csv(bm_dat, "Biomass_dat.csv")
-bm_dat %>% ggplot(aes(site, biomass_per, color = source)) + geom_point()
-
 # add zeroes for Hydrurus
 site <- c("SFTC", "Grizzly", "Paintbrush")
 
@@ -72,7 +64,7 @@ Hy_add <- data.frame(site = c("SFTC", "Grizzly", "Paintbrush"),  source = rep("H
 bm_data <- dplyr::bind_rows(bm_dat, Hy_add)
 
 # load environmental data and merge
-Envi_data <- read.csv("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Data//SIF data//MixSIAR//Environ variables//Envi_data.csv")
+Envi_data <- read.csv("Data//Envi_data.csv")
 Envi_data
 bm_envi_dat <- merge(Envi_data, bm_data, all = TRUE)
 
