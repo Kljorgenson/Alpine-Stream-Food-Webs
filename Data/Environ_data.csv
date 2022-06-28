@@ -1,0 +1,10 @@
+site,Primary_water_source,Riparian_habitat,Elevation,Tmean,Tmax,DO_mg_L,SPC,TSS_g_L,Chla_mg_m2,pH,slope,aspect,aspect_beers
+AK Basin,Subterranean ice,Alpine tundra,2881,1.6,1.9,10.9,226,0.032184211,1.682627285,7.84,3,330,0.366657469
+Cloudveil,Glacier,Boulder field,2897,2.1,3.6,10.46,5.4,0.043508486,1.503215378,9.6,22,75,1.15425145
+Delta,Glacier,Forested,2755,2,3.5,11.26,8.1,0.123527311,1.878139222,9.43,6,115,1.633319203
+Grizzly,Snowmelt,Alpine tundra,2970,5.6,14.8,8.08,14.5,0.03995193,4.04497676,8.28,6,343,0.100120026
+NFTC,Snowmelt,Alpine tundra,2956,5.9,12.2,8.6,9.8,0.030826089,3.400886708,7.31,2,30,0.240312087
+Paintbrush,Snowmelt,Boulder field,2796,5.4,9.8,9.46,32.3,0.023910621,2.79728399,8.46,9,41,0.346356379
+SFTC,Snowmelt,Alpine tundra,2995,7.9,16.8,7.6,59,0.20999474,1.446630561,7.8,3,90,1.525321989
+Skillet,Glacier,Boulder field,2733,4.1,7.8,9.67,3.6,0.058521463,6.34023754,8.86,29,60,0.240312087
+Wind Cave,Subterranean ice,Alpine tundra,2660,2.8,3.2,11.32,153.8,0.032757211,2.443510656,8.53,25,15,1.15425145

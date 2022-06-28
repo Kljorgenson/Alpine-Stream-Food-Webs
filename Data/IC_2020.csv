@@ -1,0 +1,10 @@
+site,Year,Type,fluoride,chloride,nitrate,sulfate,Notes
+Delta,2020,Surface glacier,398.4,776.4,806.1,860.4,
+Grizzly,2020,Snowmelt,477.8,741.7,395,1766.4,
+Paintbrush,2020,Rock glacier,409.9,770.8,659.9,8800.7,
+AK Basin,2020,Rock glacier,398.7,795.7,609.3,27961.8,
+SFTC,2020,Snowmelt,402.9,745.8,12.268065,5241,NO3 below DL
+Skillet,2020,Surface glacier,410.7,748.4,501.8,1518.6,
+Cloudveil,2020,Rock glacier,21.47630682,756.3,1004.2,706.9,Fl below DL
+NFTC,2020,Snowmelt,397.7,761.5,721.3,1002.5,
+Wind Cave,2020,Rock glacier,492.8,856.5,1099.6,1600.3,
