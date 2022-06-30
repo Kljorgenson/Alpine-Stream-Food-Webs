@@ -14,13 +14,13 @@ R scripts that must be run in order:<br/>
 9. Compositional variation.R: Calculate within and among-site variation <br/> 
 
 Other R scripts: <br/> 
-Isotope bioplots.R: Plot the raw isotope data with TEFs <br/> 
-Teton GCA.R: Calculate assimilated diet proportions from gut content analysis data <br/> 
+- Isotope bioplots.R: Plot the raw isotope data with TEFs <br/> 
+- Teton GCA.R: Calculate assimilated diet proportions from gut content analysis data <br/> 
 
 Data files: <br/> 
-Environ data.csv: Environmental data by site <br/> 
-GCA slide areas.xlsx: Proportional cover of food items on gut slides <br/> 
-GCA slides.xlsx:  Gut content analysis slide metadata, including site and taxa <br/> 
-Taxa classification.csv: Order, Family and Genus for Teton stream taxa <br/> 
-TetonInverts2020.csv: Surber sample data <br/> 
-Teton_Iso_Data_QC.csv: C and N isotope data for invertebrates and food sources <br/> 
+- Environ data.csv: Environmental data by site <br/> 
+- GCA slide areas.xlsx: Proportional cover of food items on gut slides <br/> 
+- GCA slides.xlsx:  Gut content analysis slide metadata, including site and taxa <br/> 
+- Taxa classification.csv: Order, Family and Genus for Teton stream taxa <br/> 
+- TetonInverts2020.csv: Surber sample data <br/> 
+- Teton_Iso_Data_QC.csv: C and N isotope data for invertebrates and food sources <br/> 
