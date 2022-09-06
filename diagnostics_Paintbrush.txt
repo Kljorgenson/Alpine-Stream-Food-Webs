@@ -1,0 +1,166 @@
+
+################################################################################
+# Gelman-Rubin Diagnostic
+################################################################################
+
+Generally the Gelman diagnostic should be < 1.05
+
+
+Out of 32 variables: 1 > 1.01
+
+                      
+0 > 1.05
+
+                      
+0 > 1.1
+
+
+The worst variables are:
+
+              Point est. Upper C.I.
+resid.prop[2]   1.010431   1.022413
+p.fac1[2,1]     1.008574   1.017499
+p.fac1[2,2]     1.008574   1.017499
+p.fac1[1,1]     1.005861   1.012039
+p.global[1]     1.005861   1.012039
+p.fac1[1,2]     1.005861   1.012039
+p.global[2]     1.005861   1.012039
+loglik[12]      1.005604   1.006653
+loglik[3]       1.003797   1.014403
+loglik[8]       1.003579   1.012976
+
+
+And here are the Gelman diagnostics for all variables:
+
+              Point est. Upper C.I.
+deviance        1.002903   1.011582
+ilr.fac1[1,1]        NaN        NaN
+ilr.fac1[2,1]   1.000036   1.000611
+ilr.fac1[3,1]   1.003388   1.013093
+ilr.fac1[4,1]   1.001071   1.005225
+loglik[1]       1.002931   1.011976
+loglik[10]      1.001974   1.008080
+loglik[11]      1.001748   1.007182
+loglik[12]      1.005604   1.006653
+loglik[13]      1.002527   1.009507
+loglik[14]      1.002123   1.008577
+loglik[15]      1.001174   1.005606
+loglik[2]       1.000588   1.002902
+loglik[3]       1.003797   1.014403
+loglik[4]       1.003174   1.011948
+loglik[5]       1.002525   1.009911
+loglik[6]       1.001292   1.005828
+loglik[7]       1.002482   1.009688
+loglik[8]       1.003579   1.012976
+loglik[9]       1.003192   1.010813
+p.fac1[1,1]     1.005861   1.012039
+p.fac1[1,2]     1.005861   1.012039
+p.fac1[2,1]     1.008574   1.017499
+p.fac1[2,2]     1.008574   1.017499
+p.fac1[3,1]     1.002011   1.008619
+p.fac1[3,2]     1.002011   1.008619
+p.fac1[4,1]     1.000438   1.001079
+p.fac1[4,2]     1.000438   1.001079
+p.global[1]     1.005861   1.012039
+p.global[2]     1.005861   1.012039
+resid.prop[1]   1.000845   1.004041
+resid.prop[2]   1.010431   1.022413
+
+################################################################################
+# Heidelberger and Welch Diagnostic
+################################################################################
+
+A few failures is normal and acceptable...
+Number of failures in each chain (out of 
+32
+ variables):
+
+
+             Chain 1 Chain 2 Chain 3
+Stationarity       1       0       0
+Half-width        13      13      14
+
+
+And here are the Heidelberger-Welch diagnostics for all variables:
+
+              stest.1 pval.1 hwtest.1 stest.2 pval.2 hwtest.2 stest.3 pval.3 hwtest.3
+deviance         pass  0.091     pass    pass  0.590     pass    pass  0.099     pass
+ilr.fac1[2,1]    pass  0.061     fail    pass  0.085     fail    pass  0.116     fail
+ilr.fac1[3,1]    fail  0.044     fail    pass  0.369     fail    pass  0.134     fail
+ilr.fac1[4,1]    pass  0.234     fail    pass  0.155     fail    pass  0.068     fail
+loglik[1]        pass  0.126     pass    pass  0.558     pass    pass  0.194     fail
+loglik[10]       pass  0.166     fail    pass  0.440     pass    pass  0.090     fail
+loglik[11]       pass  0.216     pass    pass  0.457     pass    pass  0.069     pass
+loglik[12]       pass  0.139     pass    pass  0.412     pass    pass  0.582     pass
+loglik[13]       pass  0.213     pass    pass  0.453     pass    pass  0.057     pass
+loglik[14]       pass  0.121     pass    pass  0.396     pass    pass  0.056     pass
+loglik[15]       pass  0.067     pass    pass  0.400     pass    pass  0.057     pass
+loglik[2]        pass  0.162     pass    pass  0.671     pass    pass  0.811     pass
+loglik[3]        pass  0.091     fail    pass  0.592     fail    pass  0.148     fail
+loglik[4]        pass  0.084     fail    pass  0.597     fail    pass  0.129     fail
+loglik[5]        pass  0.077     fail    pass  0.595     fail    pass  0.115     fail
+loglik[6]        pass  0.068     fail    pass  0.593     fail    pass  0.091     fail
+loglik[7]        pass  0.077     fail    pass  0.599     fail    pass  0.103     fail
+loglik[8]        pass  0.096     fail    pass  0.635     fail    pass  0.137     fail
+loglik[9]        pass  0.168     fail    pass  0.464     fail    pass  0.107     fail
+p.fac1[1,1]      pass  0.103     pass    pass  0.054     pass    pass  0.144     pass
+p.fac1[1,2]      pass  0.103     pass    pass  0.054     pass    pass  0.144     pass
+p.fac1[2,1]      pass  0.295     pass    pass  0.282     pass    pass  0.088     pass
+p.fac1[2,2]      pass  0.295     pass    pass  0.282     pass    pass  0.088     pass
+p.fac1[3,1]      pass  0.064     pass    pass  0.488     pass    pass  0.193     pass
+p.fac1[3,2]      pass  0.064     fail    pass  0.488     fail    pass  0.193     fail
+p.fac1[4,1]      pass  0.232     pass    pass  0.583     pass    pass  0.585     pass
+p.fac1[4,2]      pass  0.232     pass    pass  0.583     pass    pass  0.585     pass
+p.global[1]      pass  0.103     pass    pass  0.054     pass    pass  0.144     pass
+p.global[2]      pass  0.103     pass    pass  0.054     pass    pass  0.144     pass
+resid.prop[1]    pass  0.117     pass    pass  0.314     fail    pass  0.184     pass
+resid.prop[2]    pass  0.088     fail    pass  0.526     fail    pass  0.085     fail
+
+################################################################################
+# Geweke Diagnostic
+################################################################################
+
+The Geweke diagnostic is a standard z-score, so we'd expect 5% to be outside +/-1.96
+Number of variables outside +/-1.96 in each chain (out of 
+32
+):
+
+
+       Chain 1 Chain 2 Chain 3
+Geweke       2       2       1
+
+
+And here are the Geweke diagnostics for all variables:
+
+              chain1 chain2 chain3
+deviance       0.340 -1.597 -0.575
+ilr.fac1[2,1]  0.164 -1.477 -2.642
+ilr.fac1[3,1]  0.326 -1.417 -0.531
+ilr.fac1[4,1]  1.179 -2.764 -0.655
+loglik[1]     -0.428  1.540  0.434
+loglik[10]    -0.085  1.706  0.612
+loglik[11]    -0.098  1.909  0.647
+loglik[12]    -1.805 -0.227  0.978
+loglik[13]    -0.156  1.882  0.688
+loglik[14]    -0.180  1.952  0.684
+loglik[15]    -0.078  2.277  0.577
+loglik[2]     -0.039  1.491 -0.758
+loglik[3]     -0.572  1.477  0.381
+loglik[4]     -0.442  1.357  0.474
+loglik[5]     -0.367  1.348  0.586
+loglik[6]     -0.286  1.487  0.578
+loglik[7]     -0.356  1.349  0.604
+loglik[8]     -0.588  1.529  0.583
+loglik[9]     -0.532  1.560  0.693
+p.fac1[1,1]    0.440  1.765  0.909
+p.fac1[1,2]   -0.440 -1.765 -0.909
+p.fac1[2,1]    0.580  0.124 -0.849
+p.fac1[2,2]   -0.580 -0.124  0.849
+p.fac1[3,1]    0.421 -1.330 -0.390
+p.fac1[3,2]   -0.421  1.330  0.390
+p.fac1[4,1]    2.274 -0.765  0.320
+p.fac1[4,2]   -2.274  0.765 -0.320
+p.global[1]    0.440  1.765  0.909
+p.global[2]   -0.440 -1.765 -0.909
+resid.prop[1] -0.985  1.769  0.552
+resid.prop[2]  0.189 -1.812 -0.728

@@ -10,20 +10,21 @@ library(RColorBrewer)
 library(data.table)
 library(tidyr)
 library(grid)
+library(here)
 
 ### Create data frame
 # Load raw isotope data
-iso_dat <- read.csv("Data//Teton_Iso_Data_QC.csv") 
+iso_dat <- read.csv(here("Data//Teton_Iso_Data_QC.csv")) 
 head(iso_dat)
 
 # Merge trophic position data
-dat_TP <- read.csv("Output//TP_dat.csv")  
+dat_TP <- read.csv(here("Output//TP_dat.csv"))  
 head(dat_TP)
 dat_2 <- merge(iso_dat, dat_TP, by = c("d13C", "d15N"), all = TRUE ) %>% mutate(group = as.factor(group), site = as.factor(site)) 
 head(dat_2)
 
 # Set all non predatory data to TP = 2
-dat_2$TP <- ifelse(dat_2$group %in% c("Clinocera", "Sweltsa", "Lednia", "Megarcys", "Rhyacophila", "Simuliidae", "Turbellaria", "Ameletidae", "Baetidae"), dat_2$TP_calc, 2)
+dat_2$TP <- ifelse(dat_2$group %in% c("Clinocera", "Sweltsa", "Megarcys", "Rhyacophila", "Simuliidae", "Turbellaria", "Ameletidae", "Baetidae"), dat_2$TP_calc, 2)
 dat_3<- dat_2 %>% filter(TP < 2.5 | NA)
 head(dat_3)
 
@@ -46,9 +47,10 @@ iso_means %>% ungroup() %>% filter(group == "Hydrurus") %>% summarize(max = max(
                                                                         min = min(Meand13C))
 ### MixSIAR loop
 
-site <- c("Wind Cave", "Skillet", "SFTC", "AK Basin", "Delta", "NFTC", "Cloudveil", "Grizzly", "Paintbrush")
-site <- c("Wind Cave") # Select individual site
+site <- c("Wind Cave", "Skillet", "SFTC", "AK Basin", "Delta", "NFTC", "Cloudveil", "Grizzly", "Paintbrush") # Select all sites
+site <- c("Delta", "Wind Cave") # Select individual site
 
+#AK, Paintbrush, SFTC, Grizzly, Skillet
 for( i in site){
 
 # filter for site
@@ -102,7 +104,7 @@ process_err <- TRUE
 write_JAGS_model(model_filename, resid_err, process_err, mix, source)
 
 # Run model
-jags.1 <- run_model(run="normal", mix, source, discr, model_filename,  # Adjust run length as needed
+jags.1 <- run_model(run="long", mix, source, discr, model_filename,  # Adjust run length as needed
                           alpha.prior = 1, resid_err, process_err)
 
 # Analyze diagnostics and output

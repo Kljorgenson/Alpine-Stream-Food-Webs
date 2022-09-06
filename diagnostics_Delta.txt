@@ -1,0 +1,263 @@
+
+################################################################################
+# Gelman-Rubin Diagnostic
+################################################################################
+
+Generally the Gelman diagnostic should be < 1.05
+
+
+Out of 65 variables: 0 > 1.01
+
+                      
+0 > 1.05
+
+                      
+0 > 1.1
+
+
+The worst variables are:
+
+            Point est. Upper C.I.
+loglik[21]    1.003709   1.007284
+p.fac1[3,2]   1.002696   1.005695
+loglik[6]     1.002694   1.004504
+p.fac1[4,2]   1.002648   1.007605
+p.fac1[6,1]   1.002141   1.007255
+p.fac1[6,2]   1.002094   1.006760
+p.fac1[3,1]   1.001861   1.005125
+p.fac1[1,1]   1.001760   1.004876
+p.global[1]   1.001760   1.004876
+p.fac1[2,2]   1.001492   1.002790
+
+
+And here are the Gelman diagnostics for all variables:
+
+              Point est. Upper C.I.
+deviance       0.9995919  0.9997437
+ilr.fac1[1,1]        NaN        NaN
+ilr.fac1[1,2]        NaN        NaN
+ilr.fac1[2,1]  0.9995156  0.9995473
+ilr.fac1[2,2]  0.9999261  0.9999875
+ilr.fac1[3,1]  0.9997505  1.0002315
+ilr.fac1[3,2]  0.9999083  1.0001808
+ilr.fac1[4,1]  1.0013350  1.0050404
+ilr.fac1[4,2]  1.0002465  1.0020640
+ilr.fac1[5,1]  0.9997576  0.9998817
+ilr.fac1[5,2]  1.0009246  1.0041701
+ilr.fac1[6,1]  1.0013674  1.0040537
+ilr.fac1[6,2]  1.0008380  1.0011558
+loglik[1]      0.9996803  0.9999275
+loglik[10]     1.0000043  1.0011858
+loglik[11]     0.9996054  0.9996302
+loglik[12]     0.9999598  1.0010601
+loglik[13]     1.0000804  1.0003124
+loglik[14]     0.9997496  0.9997516
+loglik[15]     1.0003014  1.0011533
+loglik[16]     0.9996588  0.9996627
+loglik[17]     1.0001717  1.0005729
+loglik[18]     0.9998791  1.0006852
+loglik[19]     1.0001329  1.0007362
+loglik[2]      0.9995741  0.9996060
+loglik[20]     0.9999558  1.0000296
+loglik[21]     1.0037087  1.0072845
+loglik[22]     1.0002823  1.0005586
+loglik[23]     0.9998325  1.0006658
+loglik[24]     0.9998389  1.0006730
+loglik[25]     0.9997415  0.9999055
+loglik[26]     0.9999310  1.0001414
+loglik[27]     0.9997635  1.0000972
+loglik[28]     0.9996649  1.0000499
+loglik[29]     0.9998166  1.0003523
+loglik[3]      0.9998325  0.9999890
+loglik[4]      0.9997002  1.0000678
+loglik[5]      0.9995060  0.9995120
+loglik[6]      1.0026940  1.0045040
+loglik[7]      1.0000672  1.0015162
+loglik[8]      0.9995498  0.9996316
+loglik[9]      1.0006423  1.0026452
+p.fac1[1,1]    1.0017603  1.0048760
+p.fac1[1,2]    1.0007266  1.0030797
+p.fac1[1,3]    1.0006629  1.0016007
+p.fac1[2,1]    1.0010124  1.0022109
+p.fac1[2,2]    1.0014922  1.0027897
+p.fac1[2,3]    0.9995687  0.9996285
+p.fac1[3,1]    1.0018614  1.0051252
+p.fac1[3,2]    1.0026960  1.0056948
+p.fac1[3,3]    1.0000773  1.0010257
+p.fac1[4,1]    1.0005065  1.0009051
+p.fac1[4,2]    1.0026481  1.0076048
+p.fac1[4,3]    1.0005013  1.0012062
+p.fac1[5,1]    0.9995903  0.9996410
+p.fac1[5,2]    0.9996819  1.0001100
+p.fac1[5,3]    0.9999656  1.0007806
+p.fac1[6,1]    1.0021415  1.0072546
+p.fac1[6,2]    1.0020944  1.0067601
+p.fac1[6,3]    1.0000929  1.0009948
+p.global[1]    1.0017603  1.0048760
+p.global[2]    1.0007266  1.0030797
+p.global[3]    1.0006629  1.0016007
+resid.prop[1]  1.0004109  1.0015746
+resid.prop[2]  1.0003346  1.0018231
+
+################################################################################
+# Heidelberger and Welch Diagnostic
+################################################################################
+
+A few failures is normal and acceptable...
+Number of failures in each chain (out of 
+65
+ variables):
+
+
+             Chain 1 Chain 2 Chain 3
+Stationarity       0       0       2
+Half-width         7       7       9
+
+
+And here are the Heidelberger-Welch diagnostics for all variables:
+
+              stest.1 pval.1 hwtest.1 stest.2 pval.2 hwtest.2 stest.3 pval.3 hwtest.3
+deviance         pass  0.878     pass    pass  0.527     pass    pass  0.332     pass
+ilr.fac1[2,1]    pass  0.547     pass    pass  0.514     pass    fail  0.013     fail
+ilr.fac1[2,2]    pass  0.786     pass    pass  0.076     pass    pass  0.681     pass
+ilr.fac1[3,1]    pass  0.273     pass    pass  0.264     pass    pass  0.465     pass
+ilr.fac1[3,2]    pass  0.296     pass    pass  0.149     pass    pass  0.828     pass
+ilr.fac1[4,1]    pass  0.960     fail    pass  0.455     fail    pass  0.229     fail
+ilr.fac1[4,2]    pass  0.774     pass    pass  0.354     pass    pass  0.336     pass
+ilr.fac1[5,1]    pass  0.097     pass    pass  0.766     pass    pass  0.326     pass
+ilr.fac1[5,2]    pass  0.764     fail    pass  0.610     fail    pass  0.061     fail
+ilr.fac1[6,1]    pass  0.323     fail    pass  0.118     fail    pass  0.911     fail
+ilr.fac1[6,2]    pass  0.562     fail    pass  0.844     fail    pass  0.614     fail
+loglik[1]        pass  0.238     pass    pass  0.749     pass    pass  0.942     pass
+loglik[10]       pass  0.931     pass    pass  0.128     pass    pass  0.256     pass
+loglik[11]       pass  0.324     pass    pass  0.052     pass    pass  0.305     pass
+loglik[12]       pass  0.925     pass    pass  0.126     pass    pass  0.237     pass
+loglik[13]       pass  0.792     pass    pass  0.087     pass    pass  0.448     pass
+loglik[14]       pass  0.245     pass    pass  0.079     pass    pass  0.186     pass
+loglik[15]       pass  0.128     fail    pass  0.871     fail    pass  0.253     fail
+loglik[16]       pass  0.192     pass    pass  0.786     pass    pass  0.729     pass
+loglik[17]       pass  0.138     fail    pass  0.952     fail    pass  0.372     fail
+loglik[18]       pass  0.604     pass    pass  0.078     pass    pass  0.204     pass
+loglik[19]       pass  0.757     pass    pass  0.077     pass    pass  0.569     pass
+loglik[2]        pass  0.346     pass    pass  0.473     pass    pass  0.428     pass
+loglik[20]       pass  0.515     pass    pass  0.287     pass    pass  0.111     pass
+loglik[21]       pass  0.893     pass    pass  0.839     pass    pass  0.102     pass
+loglik[22]       pass  0.257     fail    pass  0.585     fail    pass  0.547     fail
+loglik[23]       pass  0.643     pass    pass  0.662     pass    pass  0.285     pass
+loglik[24]       pass  0.643     pass    pass  0.683     pass    pass  0.282     pass
+loglik[25]       pass  0.698     pass    pass  0.448     pass    pass  0.640     pass
+loglik[26]       pass  0.771     pass    pass  0.329     pass    pass  0.173     pass
+loglik[27]       pass  0.152     pass    pass  0.565     pass    pass  0.132     pass
+loglik[28]       pass  0.822     pass    pass  0.164     pass    pass  0.059     pass
+loglik[29]       pass  0.573     pass    pass  0.877     pass    pass  0.654     pass
+loglik[3]        pass  0.378     pass    pass  0.738     pass    pass  0.361     pass
+loglik[4]        pass  0.170     pass    pass  0.822     pass    pass  0.957     pass
+loglik[5]        pass  0.260     pass    pass  0.069     pass    pass  0.551     pass
+loglik[6]        pass  0.556     pass    pass  0.671     pass    pass  0.504     pass
+loglik[7]        pass  0.895     pass    pass  0.078     pass    pass  0.320     pass
+loglik[8]        pass  0.707     pass    pass  0.079     pass    pass  0.487     pass
+loglik[9]        pass  0.147     pass    pass  0.170     pass    pass  0.137     pass
+p.fac1[1,1]      pass  0.181     pass    pass  0.519     pass    pass  0.607     pass
+p.fac1[1,2]      pass  0.210     pass    pass  0.608     pass    pass  0.278     pass
+p.fac1[1,3]      pass  0.837     pass    pass  0.336     pass    pass  0.264     pass
+p.fac1[2,1]      pass  0.373     pass    pass  0.246     pass    fail  0.036     fail
+p.fac1[2,2]      pass  0.467     pass    pass  0.187     pass    pass  0.058     pass
+p.fac1[2,3]      pass  0.969     pass    pass  0.426     pass    pass  0.284     pass
+p.fac1[3,1]      pass  0.071     pass    pass  0.890     pass    pass  0.897     pass
+p.fac1[3,2]      pass  0.183     pass    pass  0.783     pass    pass  0.904     pass
+p.fac1[3,3]      pass  0.181     pass    pass  0.872     pass    pass  0.927     pass
+p.fac1[4,1]      pass  0.568     pass    pass  0.607     pass    pass  0.132     pass
+p.fac1[4,2]      pass  0.560     pass    pass  0.280     pass    pass  0.166     pass
+p.fac1[4,3]      pass  0.859     pass    pass  0.883     pass    pass  0.468     pass
+p.fac1[5,1]      pass  0.083     pass    pass  0.929     pass    pass  0.105     pass
+p.fac1[5,2]      pass  0.340     pass    pass  0.574     pass    pass  0.216     pass
+p.fac1[5,3]      pass  0.381     pass    pass  0.826     pass    pass  0.284     pass
+p.fac1[6,1]      pass  0.494     pass    pass  0.291     pass    pass  0.098     pass
+p.fac1[6,2]      pass  0.655     pass    pass  0.675     pass    pass  0.489     pass
+p.fac1[6,3]      pass  0.566     pass    pass  0.468     pass    pass  0.373     pass
+p.global[1]      pass  0.181     pass    pass  0.519     pass    pass  0.607     pass
+p.global[2]      pass  0.210     pass    pass  0.608     pass    pass  0.278     pass
+p.global[3]      pass  0.837     pass    pass  0.336     pass    pass  0.264     pass
+resid.prop[1]    pass  0.489     pass    pass  0.230     pass    pass  0.055     pass
+resid.prop[2]    pass  0.532     pass    pass  0.959     pass    pass  0.874     pass
+
+################################################################################
+# Geweke Diagnostic
+################################################################################
+
+The Geweke diagnostic is a standard z-score, so we'd expect 5% to be outside +/-1.96
+Number of variables outside +/-1.96 in each chain (out of 
+65
+):
+
+
+       Chain 1 Chain 2 Chain 3
+Geweke       2       3       1
+
+
+And here are the Geweke diagnostics for all variables:
+
+              chain1 chain2 chain3
+deviance       0.605 -0.186 -0.194
+ilr.fac1[2,1] -0.478 -1.544  0.579
+ilr.fac1[2,2] -0.788 -0.664  1.832
+ilr.fac1[3,1] -1.475  0.881  0.540
+ilr.fac1[3,2]  0.211 -0.088  0.972
+ilr.fac1[4,1]  1.278  2.424  0.576
+ilr.fac1[4,2] -0.309 -1.053 -0.424
+ilr.fac1[5,1] -0.102 -1.393  0.074
+ilr.fac1[5,2]  0.087  0.914  1.055
+ilr.fac1[6,1]  0.320 -1.277  1.285
+ilr.fac1[6,2]  1.718 -0.864 -1.259
+loglik[1]     -1.156 -0.247 -0.331
+loglik[10]    -0.391  1.502  0.837
+loglik[11]     0.649  1.003  0.864
+loglik[12]    -0.500  1.622  0.880
+loglik[13]     0.265  0.505  0.816
+loglik[14]     1.088  1.094  0.956
+loglik[15]     0.472 -1.226  0.710
+loglik[16]     1.024 -1.006  0.879
+loglik[17]     0.611 -0.980  0.851
+loglik[18]    -0.973  1.793  1.036
+loglik[19]     0.134  0.262  0.806
+loglik[2]     -0.185  1.596 -0.503
+loglik[20]     1.289  0.902  0.797
+loglik[21]     1.075 -1.126  0.203
+loglik[22]     0.732 -0.339  0.988
+loglik[23]    -0.320 -0.278  0.256
+loglik[24]    -0.308 -0.281  0.267
+loglik[25]    -0.429  0.446 -0.139
+loglik[26]     0.616  0.178 -0.064
+loglik[27]    -1.008 -0.370 -0.775
+loglik[28]    -0.534 -1.065 -0.353
+loglik[29]    -0.588 -0.089 -1.234
+loglik[3]      1.373 -1.010  0.055
+loglik[4]     -1.160  0.039  0.049
+loglik[5]      0.496  0.943  0.508
+loglik[6]     -0.895 -0.502  1.197
+loglik[7]     -0.163  1.554  0.672
+loglik[8]      0.088  0.795  0.733
+loglik[9]      0.330 -1.760  0.282
+p.fac1[1,1]   -1.759 -0.715 -0.478
+p.fac1[1,2]    1.422  1.638  1.688
+p.fac1[1,3]    0.158 -0.354 -0.592
+p.fac1[2,1]   -0.885 -1.929  0.056
+p.fac1[2,2]    0.436  1.981  1.209
+p.fac1[2,3]    1.008  0.216 -2.096
+p.fac1[3,1]   -2.267 -0.648  0.425
+p.fac1[3,2]    2.098  1.171  0.000
+p.fac1[3,3]    1.031 -1.051 -0.824
+p.fac1[4,1]   -0.158  0.631  0.059
+p.fac1[4,2]    0.613 -0.850  0.942
+p.fac1[4,3]   -0.247 -0.440 -0.632
+p.fac1[5,1]   -0.679 -1.255  0.525
+p.fac1[5,2]    1.043  2.176  1.041
+p.fac1[5,3]   -0.336 -0.455 -1.772
+p.fac1[6,1]    0.279 -1.558 -0.030
+p.fac1[6,2]    0.555  1.110 -0.117
+p.fac1[6,3]   -1.191  0.684  0.163
+p.global[1]   -1.759 -0.715 -0.478
+p.global[2]    1.422  1.638  1.688
+p.global[3]    0.158 -0.354 -0.592
+resid.prop[1]  1.007 -0.892 -0.482
+resid.prop[2] -0.215  0.286 -0.609
