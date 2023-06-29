@@ -1,6 +1,6 @@
 # Alpine-Stream-Food-Webs
 
-This contains the data and code necessary to replicate the findings from my thesis titled "Hydrologic source and trophic flexibility structure alpine stream food webs in the Teton Range, Wyoming".
+This repository contains the data and code necessary to replicate the findings from the manuscript titled "Hydrologic source and trophic flexibility structure alpine stream food webs".
 
 R scripts that must be run in order:<br/>
 1. Trophic position.R: Calculate the trophic position of each invertebrate sample using the one baseline method <br/>
