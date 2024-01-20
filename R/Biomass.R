@@ -12,8 +12,11 @@ library(ggtern)
 div_d <- read.csv("Data//TetonInverts2020.csv")
 head(div_d)
 
+div_d <- div_d %>% dplyr::mutate(across(c(L1:L20),~ifelse(is.na(.), 0, 1))) %>% 
+  dplyr::mutate(n = rowSums(across(L1:L20), na.rm = T))
+
 # Change taxa to match diet taxonomic groups
-div_dat <- div_d %>% mutate(taxa = case_when(startsWith(Taxa, "Rhy") ~ "Rhyacophilidae",
+div_dat <- div_d %>% dplyr::mutate(taxa = case_when(startsWith(Taxa, "Rhy") ~ "Rhyacophilidae",
                                     Taxa %in% c("Simuliidae Pupae", "Heterocloeon", "Prosimuliium", "Helodon") ~ "Simuliidae",
                                     Taxa == "Non-Tanypodinae" ~ "Midges",
                                      Taxa == "Chironomidae Pupae" ~ "Midges",
@@ -21,10 +24,10 @@ div_dat <- div_d %>% mutate(taxa = case_when(startsWith(Taxa, "Rhy") ~ "Rhyacoph
                                      Taxa %in% c("1Megarcys", "2Megarcys") ~ "Megarcys",
                                     Taxa == "Nematoda" ~ "Oligochaeta",
                                      !Taxa %in% c("Rhyacophilidae", "Simuliidae Pupae", "Heterocloeon", "Prosimuliium", "Helodon", "Chironomidae Pupae", "Non-Tanypodinae", "Tipula (Arctotipula)","1Megarcys", "2Megarcys") ~ Taxa   )) %>% 
-  select(Stream, taxa, Biomass_mg_m2) %>% filter(taxa != "Chironomidae Adult") %>% rename(site = Stream)
+  dplyr::select(Stream, taxa, Biomass_mg_m2, n) %>% filter(taxa != "Chironomidae Adult") %>% dplyr::rename(site = Stream)
 
-div_dat
-
+a <- div_dat %>% dplyr::group_by(site, taxa) %>% dplyr::summarise(n = sum(n))
+write.csv(a,"bionums.csv")
 
 # Rename stream names so that they match
 div_dat$site <- as.factor(div_dat$site)
