@@ -35,7 +35,7 @@ levels(div_dat$site) <- c("AK Basin",  "Cloudveil", "Delta", "Grizzly", "Middle 
 "Paintbrush", "SFTC", "Skillet", "South Cascade RG", "The Gusher", "Wind Cave") 
 
 # Merge biomass and diet proportions data
-data_di <- read.csv("Data//diet_data_clean.csv")
+data_di <- read.csv("Output//diet_data_clean.csv")
 data_di$site <- as.factor(data_di$site)
 levels(data_di$site) <- c("AK Basin","Cloudveil","Delta","Grizzly","NFTC", "Paintbrush", "SFTC", "Skillet", "Wind Cave" )
 head(data_di)
@@ -72,17 +72,6 @@ Envi_data
 bm_envi_dat <- merge(Envi_data, bm_data, all = TRUE)
 
 
-# Plot of site means for different water sources
-dodge <- position_dodge(width=0.8)
-p2 <- bm_envi_dat %>% ggplot(aes(Primary_water_source, biomass_per, fill = source)) + geom_boxplot(position = dodge) +
-  geom_point(position = dodge, shape = 21, cex = 2) + theme_bw() +
-  scale_fill_brewer(palette = "Dark2") +
-  scale_color_brewer(palette = "Dark2") + xlab(NULL) +
-  ylab("Biomass (%)") + labs(fill = "Resource")
-p2
-
-ggsave("Output//Paper figures//Biomass by hydro.png", height = 4, width = 5)
-
 ### Dirichlet regression
 # Organize data
 spread_bm_dat <- bm_envi_dat %>% select(site, source, biomass_per) %>% spread(key = source, value = biomass_per) 
@@ -116,7 +105,7 @@ summary(m4b)
 m5b <- DirichReg(DB ~ TSS_g_L, spread_bm_envi_dat, model = "common")
 summary(m5b)
 
-#spread_bm_envi_dat$Primary_water_source <- factor(spread_bm_envi_dat$Primary_water_source, levels=c( "Snowmelt", "Glacier","Subterranean ice"))
+spread_bm_envi_dat$Primary_water_source <- factor(spread_bm_envi_dat$Primary_water_source, levels=c( "Snowmelt", "Glacier","Subterranean ice"))
 
 m6b <- DirichReg(DB ~ Primary_water_source, spread_bm_envi_dat, model = "common")
 summary(m6b)
@@ -172,7 +161,35 @@ AICc_B
 
 write.csv(AICc, "Output//AICc biomass table.csv")
 
-### facet plot
+## Plot of site mean biomass proportions and model fits by hydrologic source
+# Reformat data
+means <- spread_bm_envi_dat[,c(1,2,3,4,6)] %>% pivot_longer(cols = 2:4, names_to = "source")
+# Extract model fits
+df <- as.data.frame(predict(m6b))
+df$WS <- spread_env_m_dat$Primary_water_source
+df <- df %>% pivot_longer(cols = 1:3)
+df %>% ggplot(aes(WS, value, color = name)) + geom_boxplot()
+
+# Plot biomass proportions by hydrologic source
+p100 <- means %>% ggplot() +
+  geom_boxplot(aes(Primary_water_source, value, col = source)) + 
+  geom_point(aes(Primary_water_source, value, col = source), cex = 2, shape = 21, position = position_dodge(width = 0.75)) +
+  scale_fill_brewer(palette = "Dark2", guide = "none") +
+  scale_color_brewer(palette = "Dark2", labels = c("Biofilm", "CPOM", expression(italic("Hydrurus")))) +
+  #annotate(geom="text", x=2, y=0.38, label="a", color="#D95F02") +
+  #annotate(geom="text", x=3, y=0.29, label="a", color="#D95F02") +
+  labs(col = "Resource") + xlab(NULL) + 
+  ylab("Biomass Proportion") + theme_bw() +
+  #scale_colour_continuous(guide = "none") +
+  geom_boxplot(data = df, aes(WS, value, fill = name), width = 1, position = position_dodge(width = 0.75))
+
+p100
+ggsave("Output//Paper figures//Biomass by hydro.png", width = 5, height = 3.6)
+
+
+
+
+### Facet plot of environmental variable models
 
 x2<- seq(min(spread_bm_envi_dat$Tmean), max(spread_bm_envi_dat$Tmean), length.out = 1000)
 pred2 <- predict(m2b, newdata = data.frame(Tmean=x2))

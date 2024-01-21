@@ -51,22 +51,6 @@ env_diet_dat <- merge(data_diet_H0, Envi_data, all = TRUE) %>% filter(source != 
 
 write.csv(env_diet_dat, "Output//env_diet_dat.csv")
 
-# Plot of sit mean diet composition grouped by water source
-means <- env_diet_dat %>% group_by(site, source) %>% summarise(Mean = mean(Mean, na.rm = TRUE),
-                                                              W_source = Primary_water_source) %>% unique()
-
-# Plot diet proportions by hydrologic source
-p100 <- means %>% ggplot() +
-  geom_boxplot(aes(W_source, Mean, fill = source)) + 
-  geom_point(aes(W_source, Mean, fill = source), cex = 2, shape = 21, position = position_dodge(width = 0.75)) +
-  scale_fill_brewer(palette = "Dark2") +
-  scale_color_brewer(palette = "Dark2") +
-  #annotate(geom="text", x=2, y=0.38, label="a", color="#D95F02") +
-  #annotate(geom="text", x=3, y=0.29, label="a", color="#D95F02") +
-  labs(fill = "Resource") + xlab(NULL) + 
-  ylab("Diet Proportion") + theme_bw() 
-p100
-ggsave("Output//Paper figures//Diet by Hydro.png", width = 5, height = 3.6)
 
 
 
