@@ -58,6 +58,12 @@ plot(DD)
 # Models with single explanatory variables
 m6c <- DirichReg(DD ~ Primary_water_source, spread_env_m_dat, model = "common")
 summary(m6c)
+fitted(m6c, mu = TRUE, alpha = T, phi = T)
+
+spread_env_m_dat$Primary_water_source <- factor(spread_env_m_dat$Primary_water_source, levels=c("Subterranean ice", "Snowmelt", "Glacier"))
+m6c <- DirichReg(DD ~ Primary_water_source, spread_env_m_dat, model = "common")
+summary(m6c)
+
 
 m1c <- DirichReg(DD ~ SPC, spread_env_m_dat, model = "common")
 summary(m1c)
@@ -167,7 +173,8 @@ p100 <- means %>% ggplot() +
   labs(fill = "Resource") + xlab(NULL) + 
   ylab("Diet Proportion") + theme_bw() +
   #scale_colour_continuous(guide = "none") +
-  geom_boxplot(data = df, aes(WS, value, fill = name), width = 1, position = position_dodge(width = 0.75))
+  geom_boxplot(data = df, aes(WS, value, fill = name), width = 1, position = position_dodge(width = 0.75)) +
+  theme(legend.position = "bottom")
   
 p100
 ggsave("Output//Paper figures//Diet by Hydro.png", width = 5, height = 3.6)

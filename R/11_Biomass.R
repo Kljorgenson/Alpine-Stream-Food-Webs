@@ -105,8 +105,6 @@ summary(m4b)
 m5b <- DirichReg(DB ~ TSS_g_L, spread_bm_envi_dat, model = "common")
 summary(m5b)
 
-spread_bm_envi_dat$Primary_water_source <- factor(spread_bm_envi_dat$Primary_water_source, levels=c( "Snowmelt", "Glacier","Subterranean ice"))
-
 m6b <- DirichReg(DB ~ Primary_water_source, spread_bm_envi_dat, model = "common")
 summary(m6b)
 
