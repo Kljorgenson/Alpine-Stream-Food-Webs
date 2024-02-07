@@ -38,10 +38,6 @@ spread_env_m_dat
 
 spread_env_m_dat %>% group_by(site) %>% summarise(tot = sum(Biofilm+CPOM+Hydrurus)) # Check that they sum to 1
 
-## Test for multivariate normality
-names(spread_env_m_dat)
-mshapiro.test(t(spread_env_m_dat[,c(9,12,13,15,20)])) # Test environmental variables: pass
-mshapiro.test(t(spread_env_m_dat[,c(3:5)])) # Test diet compositions: barely fails
 
 ### Construct models
 
@@ -60,9 +56,6 @@ m6c <- DirichReg(DD ~ Primary_water_source, spread_env_m_dat, model = "common")
 summary(m6c)
 fitted(m6c, mu = TRUE, alpha = T, phi = T)
 
-spread_env_m_dat$Primary_water_source <- factor(spread_env_m_dat$Primary_water_source, levels=c("Subterranean ice", "Snowmelt", "Glacier"))
-m6c <- DirichReg(DD ~ Primary_water_source, spread_env_m_dat, model = "common")
-summary(m6c)
 
 
 m1c <- DirichReg(DD ~ SPC, spread_env_m_dat, model = "common")
@@ -267,12 +260,18 @@ p
 ggsave("Output//Paper figures//Dirichlet envi facet.png", width = 7, height = 4)
 
 
+
+
+
+
+
+
 ## Taxa specific models
-n <- spread %>% group_by(taxa) %>% summarise(n = length(taxa))
+n <- spread1 %>% group_by(taxa) %>% summarise(n = length(taxa))
 n
 
 # Make all proportions sum to 1
-spread_2 <- spread %>% group_by(site, taxa) %>% mutate(Biofilm = round(Biofilm/(Biofilm+CPOM+Hydrurus),2),
+spread_2 <- spread1 %>% group_by(site, taxa) %>% mutate(Biofilm = round(Biofilm/(Biofilm+CPOM+Hydrurus),2),
                                                                       CPOM = round(CPOM/(Biofilm+CPOM+Hydrurus),2),
                                                                       Hydrurus = round(Hydrurus/(Biofilm+CPOM+Hydrurus),2))
 
@@ -281,7 +280,7 @@ spread_2 %>% group_by(site, taxa) %>% summarise(tot = sum(Biofilm+CPOM+Hydrurus)
 spread_taxa <- merge(spread_2, Envi_data)
 
 # Select taxa and hydrologic sources
-spread_t <- filter(spread_taxa, taxa == "Midges", Primary_water_source %in% c("Glacier", "Snowmelt"))
+spread_t <- filter(spread_taxa, taxa == "Zapada", Primary_water_source %in% c("Glacier", "Subterranean ice"))
 
 # Plot
 ggtern(spread_t, aes(Biofilm, Hydrurus, CPOM, color = Primary_water_source)) + geom_point()
@@ -297,6 +296,48 @@ summary(tm1)
 data_diet %>% filter(taxa %in% c("Lednia", "Zapada")) %>% group_by(taxa, source) %>% summarise(max = max(Mean),
                                                                                                mean = mean(Mean),
                                                                                                sd = sd(Mean))
+
+
+library(data.table)
+boot.fun <- function(x){
+  
+  dat <- spread_t[, c(3:5,7)]
+  sub <- dat %>% filter(Primary_water_source == "Subterranean ice")
+  glacier <- dat %>% filter(Primary_water_source == "Glacier")
+  
+  sub.dat <- sub[sample(nrow(sub), 2, replace = T),]
+  glacier.dat <- glacier[sample(nrow(glacier), 2, replace = T),]
+  data <- rbind(sub.dat, glacier.dat)
+  
+  # Sum to 1
+  data <- data %>% group_by() %>% mutate(Biofilm = round(Biofilm/(Biofilm+CPOM+Hydrurus),2),
+                                         CPOM = round(CPOM/(Biofilm+CPOM+Hydrurus),2),
+                                         Hydrurus = round(Hydrurus/(Biofilm+CPOM+Hydrurus),2))
+  DD <-DR_data(data[,1:3])
+  m6c <- DirichReg(DD ~ Primary_water_source, data, model = "common")
+  
+  df <- as.data.frame(fitted(m6c, mu = TRUE, alpha = F, phi = F))
+  df$Primary_water_source <- c(rep("Subterranean ice", 2), rep("Glacier", 2))
+  df <- df %>% unique()
+  return(df)
+}
+
+boot.fun()
+
+list.b <- lapply(1:100, boot.fun)
+boot.b <- rbindlist(list.b)
+head(boot.b)
+
+boot.ci.b <- boot.b  %>% pivot_longer(cols = 1:3, names_to = "source") %>% group_by(Primary_water_source, source) %>%
+  summarise(p2.5 = quantile(value, probs = 0.025),
+            p50 = quantile(value, probs = 0.5),
+            p97.5 = quantile(value, probs = 0.975))
+
+
+boot.ci.b %>% ggplot(aes(p50, Primary_water_source, color = source)) + geom_point() + geom_point(aes(x = p2.5, Primary_water_source, color = source), shape = 2) +
+  geom_point() + geom_point(aes(x = p97.5, Primary_water_source, color = source), shape = 2)
+
+
 
 
 
