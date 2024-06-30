@@ -1,144 +1,144 @@
 "","site","taxa","source","Mean","SD"
-"1","AK Basin","Allomyia","Biofilm",0.012,0.014
-"2","AK Basin","Allomyia","CPOM",0.264,0.084
-"3","AK Basin","Allomyia","Hydrurus",0.724,0.084
-"4","AK Basin","Ameletidae","Biofilm",0.017,0.028
-"5","AK Basin","Ameletidae","CPOM",0.145,0.08
-"6","AK Basin","Ameletidae","Hydrurus",0.838,0.085
-"7","AK Basin","Baetidae","Biofilm",0.023,0.039
-"8","AK Basin","Baetidae","CPOM",0.132,0.083
-"9","AK Basin","Baetidae","Hydrurus",0.845,0.092
-"10","AK Basin","Drunella","Biofilm",0.026,0.043
+"1","AK Basin","Allomyia","Biofilm",0.012,0.012
+"2","AK Basin","Allomyia","CPOM",0.268,0.084
+"3","AK Basin","Allomyia","Hydrurus",0.719,0.084
+"4","AK Basin","Ameletidae","Biofilm",0.016,0.027
+"5","AK Basin","Ameletidae","CPOM",0.144,0.079
+"6","AK Basin","Ameletidae","Hydrurus",0.84,0.083
+"7","AK Basin","Baetidae","Biofilm",0.023,0.043
+"8","AK Basin","Baetidae","CPOM",0.13,0.082
+"9","AK Basin","Baetidae","Hydrurus",0.847,0.092
+"10","AK Basin","Drunella","Biofilm",0.028,0.047
 "11","AK Basin","Drunella","CPOM",0.397,0.15
-"12","AK Basin","Drunella","Hydrurus",0.577,0.15
-"13","AK Basin","Heptageniidae","Biofilm",0.019,0.028
-"14","AK Basin","Heptageniidae","CPOM",0.219,0.078
-"15","AK Basin","Heptageniidae","Hydrurus",0.762,0.08
-"16","AK Basin","Homophylax","Biofilm",0.03,0.053
-"17","AK Basin","Homophylax","CPOM",0.251,0.149
-"18","AK Basin","Homophylax","Hydrurus",0.719,0.155
+"12","AK Basin","Drunella","Hydrurus",0.575,0.15
+"13","AK Basin","Heptageniidae","Biofilm",0.019,0.03
+"14","AK Basin","Heptageniidae","CPOM",0.221,0.08
+"15","AK Basin","Heptageniidae","Hydrurus",0.759,0.082
+"16","AK Basin","Homophylax","Biofilm",0.031,0.057
+"17","AK Basin","Homophylax","CPOM",0.249,0.151
+"18","AK Basin","Homophylax","Hydrurus",0.72,0.158
 "19","AK Basin","Rithrogena","Biofilm",0.013,0.022
-"20","AK Basin","Rithrogena","CPOM",0.108,0.064
-"21","AK Basin","Rithrogena","Hydrurus",0.879,0.069
+"20","AK Basin","Rithrogena","CPOM",0.108,0.065
+"21","AK Basin","Rithrogena","Hydrurus",0.879,0.068
 "22","AK Basin","Tipula","Biofilm",0.015,0.02
-"23","AK Basin","Tipula","CPOM",0.494,0.091
-"24","AK Basin","Tipula","Hydrurus",0.491,0.09
-"25","AK Basin","Zapada","Biofilm",0.018,0.023
-"26","AK Basin","Zapada","CPOM",0.339,0.054
-"27","AK Basin","Zapada","Hydrurus",0.642,0.053
-"28","Cloudveil","Heterocloeon","Biofilm",0.817,0.104
-"29","Cloudveil","Heterocloeon","CPOM",0.072,0.069
-"30","Cloudveil","Heterocloeon","Hydrurus",0.111,0.095
-"31","Cloudveil","Lednia","Biofilm",0.934,0.051
-"32","Cloudveil","Lednia","CPOM",0.029,0.033
-"33","Cloudveil","Lednia","Hydrurus",0.038,0.04
-"34","Cloudveil","Midges","Biofilm",0.824,0.085
-"35","Cloudveil","Midges","CPOM",0.068,0.066
-"36","Cloudveil","Midges","Hydrurus",0.109,0.089
-"37","Cloudveil","Zapada","Biofilm",0.92,0.066
-"38","Cloudveil","Zapada","CPOM",0.034,0.042
-"39","Cloudveil","Zapada","Hydrurus",0.046,0.052
-"40","Delta","Allomyia","Biofilm",0.68,0.104
-"41","Delta","Allomyia","CPOM",0.143,0.089
-"42","Delta","Allomyia","Hydrurus",0.177,0.081
-"43","Delta","Homophylax","Biofilm",0.847,0.126
-"44","Delta","Homophylax","CPOM",0.091,0.112
-"45","Delta","Homophylax","Hydrurus",0.062,0.054
-"46","Delta","Lednia","Biofilm",0.686,0.138
-"47","Delta","Lednia","CPOM",0.136,0.113
-"48","Delta","Lednia","Hydrurus",0.179,0.112
-"49","Delta","Midges","Biofilm",0.438,0.098
-"50","Delta","Midges","CPOM",0.119,0.077
-"51","Delta","Midges","Hydrurus",0.443,0.088
-"52","Delta","Tipula","Biofilm",0.275,0.194
-"53","Delta","Tipula","CPOM",0.357,0.223
-"54","Delta","Tipula","Hydrurus",0.368,0.213
-"55","Delta","Zapada","Biofilm",0.806,0.105
-"56","Delta","Zapada","CPOM",0.119,0.098
-"57","Delta","Zapada","Hydrurus",0.075,0.055
-"58","Grizzly","Homophylax","Biofilm",0.321,0.046
-"59","Grizzly","Homophylax","CPOM",0.679,0.041
-"60","Grizzly","Midges","Biofilm",0.379,0.083
-"61","Grizzly","Midges","CPOM",0.621,0.0615
-"62","Grizzly","Simuliidae","Biofilm",0.277,0.04
-"63","Grizzly","Simuliidae","CPOM",0.723,0.0285
-"64","NFTC","Allomyia","Biofilm",0.485,0.122
-"65","NFTC","Allomyia","CPOM",0.256,0.128
-"66","NFTC","Allomyia","Hydrurus",0.258,0.146
-"67","NFTC","Homophylax","Biofilm",0.576,0.114
-"68","NFTC","Homophylax","CPOM",0.159,0.11
-"69","NFTC","Homophylax","Hydrurus",0.265,0.167
-"70","NFTC","Midges","Biofilm",0.393,0.076
-"71","NFTC","Midges","CPOM",0.42,0.119
-"72","NFTC","Midges","Hydrurus",0.187,0.132
-"73","NFTC","Simuliidae","Biofilm",0.405,0.161
-"74","NFTC","Simuliidae","CPOM",0.199,0.156
-"75","NFTC","Simuliidae","Hydrurus",0.396,0.232
-"76","NFTC","Tipula","Biofilm",0.806,0.157
-"77","NFTC","Tipula","CPOM",0.109,0.134
-"78","NFTC","Tipula","Hydrurus",0.084,0.088
-"79","Paintbrush","Homophylax","Biofilm",0.882,0.1
-"80","Paintbrush","Homophylax","CPOM",0.118,0.1
-"81","Paintbrush","Lednia","Biofilm",0.85,0.126
-"82","Paintbrush","Lednia","CPOM",0.15,0.126
-"83","Paintbrush","Midges","Biofilm",0.638,0.324
-"84","Paintbrush","Midges","CPOM",0.362,0.324
-"85","Paintbrush","Simuliidae","Biofilm",0.805,0.115
-"86","Paintbrush","Simuliidae","CPOM",0.195,0.115
-"87","SFTC","Allomyia","Biofilm",0.64,0.087
-"88","SFTC","Allomyia","CPOM",0.36,0.145
-"89","SFTC","Baetidae","Biofilm",0.803,0.071
-"90","SFTC","Baetidae","CPOM",0.197,0.112
-"91","SFTC","Cinygmula","Biofilm",0.761,0.0735
-"92","SFTC","Cinygmula","CPOM",0.239,0.127
-"93","SFTC","Epeorus","Biofilm",0.756,0.109
-"94","SFTC","Epeorus","CPOM",0.244,0.202
-"95","SFTC","Megarcys","Biofilm",0.813,0.086
-"96","SFTC","Megarcys","CPOM",0.187,0.124
-"97","SFTC","Midges","Biofilm",0.329,0.0435
-"98","SFTC","Midges","CPOM",0.67,0.066
-"99","SFTC","Rhyacophila","Biofilm",0.412,0.124
-"100","SFTC","Rhyacophila","CPOM",0.588,0.194
-"101","SFTC","Simuliidae","Biofilm",0.732,0.0705
-"102","SFTC","Simuliidae","CPOM",0.268,0.119
-"103","SFTC","Zapada","Biofilm",0.639,0.0665
-"104","SFTC","Zapada","CPOM",0.361,0.118
-"105","Skillet","Agathon","Biofilm",0.562,0.199
-"106","Skillet","Agathon","CPOM",0.056,0.046
-"107","Skillet","Agathon","Hydrurus",0.382,0.198
-"108","Skillet","Allomyia","Biofilm",0.425,0.21
-"109","Skillet","Allomyia","CPOM",0.038,0.044
-"110","Skillet","Allomyia","Hydrurus",0.537,0.221
-"111","Skillet","Lednia","Biofilm",0.331,0.176
-"112","Skillet","Lednia","CPOM",0.052,0.059
-"113","Skillet","Lednia","Hydrurus",0.617,0.199
-"114","Skillet","Midges","Biofilm",0.636,0.258
-"115","Skillet","Midges","CPOM",0.107,0.082
-"116","Skillet","Midges","Hydrurus",0.257,0.277
-"117","Skillet","Rhyacophila","Biofilm",0.657,0.246
-"118","Skillet","Rhyacophila","CPOM",0.03,0.035
-"119","Skillet","Rhyacophila","Hydrurus",0.313,0.248
-"120","Skillet","Simuliidae","Biofilm",0.408,0.148
-"121","Skillet","Simuliidae","CPOM",0.068,0.056
-"122","Skillet","Simuliidae","Hydrurus",0.524,0.158
-"123","Wind Cave","Acari","Biofilm",0.041,0.04
-"124","Wind Cave","Acari","CPOM",0.185,0.071
-"125","Wind Cave","Acari","Hydrurus",0.774,0.08
-"126","Wind Cave","Allomyia","Biofilm",0.031,0.039
-"127","Wind Cave","Allomyia","CPOM",0.435,0.127
-"128","Wind Cave","Allomyia","Hydrurus",0.533,0.133
-"129","Wind Cave","Lednia","Biofilm",0.039,0.066
-"130","Wind Cave","Lednia","CPOM",0.079,0.066
-"131","Wind Cave","Lednia","Hydrurus",0.882,0.096
-"132","Wind Cave","Megarcys","Biofilm",0.115,0.081
-"133","Wind Cave","Megarcys","CPOM",0.181,0.065
-"134","Wind Cave","Megarcys","Hydrurus",0.704,0.102
-"135","Wind Cave","Midges","Biofilm",0.018,0.022
-"136","Wind Cave","Midges","CPOM",0.617,0.102
-"137","Wind Cave","Midges","Hydrurus",0.366,0.103
-"138","Wind Cave","Simuliidae","Biofilm",0.045,0.066
-"139","Wind Cave","Simuliidae","CPOM",0.205,0.123
-"140","Wind Cave","Simuliidae","Hydrurus",0.749,0.142
-"141","Wind Cave","Zapada","Biofilm",0.032,0.03
-"142","Wind Cave","Zapada","CPOM",0.217,0.057
-"143","Wind Cave","Zapada","Hydrurus",0.751,0.059
+"23","AK Basin","Tipula","CPOM",0.5,0.09
+"24","AK Basin","Tipula","Hydrurus",0.486,0.089
+"25","AK Basin","Zapada","Biofilm",0.018,0.025
+"26","AK Basin","Zapada","CPOM",0.343,0.054
+"27","AK Basin","Zapada","Hydrurus",0.639,0.052
+"28","Cloudveil","Heterocloeon","Biofilm",0.808,0.107
+"29","Cloudveil","Heterocloeon","CPOM",0.078,0.074
+"30","Cloudveil","Heterocloeon","Hydrurus",0.114,0.098
+"31","Cloudveil","Lednia","Biofilm",0.933,0.05
+"32","Cloudveil","Lednia","CPOM",0.03,0.033
+"33","Cloudveil","Lednia","Hydrurus",0.037,0.038
+"34","Cloudveil","Midges","Biofilm",0.822,0.082
+"35","Cloudveil","Midges","CPOM",0.071,0.067
+"36","Cloudveil","Midges","Hydrurus",0.106,0.084
+"37","Cloudveil","Zapada","Biofilm",0.919,0.067
+"38","Cloudveil","Zapada","CPOM",0.034,0.039
+"39","Cloudveil","Zapada","Hydrurus",0.048,0.055
+"40","Delta","Allomyia","Biofilm",0.685,0.111
+"41","Delta","Allomyia","CPOM",0.109,0.078
+"42","Delta","Allomyia","Hydrurus",0.206,0.096
+"43","Delta","Homophylax","Biofilm",0.815,0.13
+"44","Delta","Homophylax","CPOM",0.091,0.109
+"45","Delta","Homophylax","Hydrurus",0.094,0.075
+"46","Delta","Lednia","Biofilm",0.898,0.076
+"47","Delta","Lednia","CPOM",0.058,0.067
+"48","Delta","Lednia","Hydrurus",0.045,0.036
+"49","Delta","Midges","Biofilm",0.444,0.108
+"50","Delta","Midges","CPOM",0.083,0.063
+"51","Delta","Midges","Hydrurus",0.472,0.098
+"52","Delta","Tipula","Biofilm",0.403,0.252
+"53","Delta","Tipula","CPOM",0.277,0.209
+"54","Delta","Tipula","Hydrurus",0.32,0.201
+"55","Delta","Zapada","Biofilm",0.769,0.096
+"56","Delta","Zapada","CPOM",0.095,0.082
+"57","Delta","Zapada","Hydrurus",0.135,0.075
+"58","Grizzly","Homophylax","Biofilm",0.246,0.059
+"59","Grizzly","Homophylax","CPOM",0.754,0.059
+"60","Grizzly","Midges","Biofilm",0.307,0.099
+"61","Grizzly","Midges","CPOM",0.693,0.099
+"62","Grizzly","Simuliidae","Biofilm",0.194,0.058
+"63","Grizzly","Simuliidae","CPOM",0.806,0.058
+"64","NFTC","Allomyia","Biofilm",0.486,0.123
+"65","NFTC","Allomyia","CPOM",0.259,0.13
+"66","NFTC","Allomyia","Hydrurus",0.255,0.151
+"67","NFTC","Homophylax","Biofilm",0.58,0.108
+"68","NFTC","Homophylax","CPOM",0.164,0.112
+"69","NFTC","Homophylax","Hydrurus",0.256,0.165
+"70","NFTC","Midges","Biofilm",0.392,0.076
+"71","NFTC","Midges","CPOM",0.424,0.119
+"72","NFTC","Midges","Hydrurus",0.184,0.132
+"73","NFTC","Simuliidae","Biofilm",0.406,0.163
+"74","NFTC","Simuliidae","CPOM",0.203,0.155
+"75","NFTC","Simuliidae","Hydrurus",0.392,0.236
+"76","NFTC","Tipula","Biofilm",0.801,0.157
+"77","NFTC","Tipula","CPOM",0.115,0.137
+"78","NFTC","Tipula","Hydrurus",0.084,0.09
+"79","Paintbrush","Homophylax","Biofilm",0.884,0.096
+"80","Paintbrush","Homophylax","CPOM",0.116,0.096
+"81","Paintbrush","Lednia","Biofilm",0.846,0.128
+"82","Paintbrush","Lednia","CPOM",0.154,0.128
+"83","Paintbrush","Midges","Biofilm",0.644,0.326
+"84","Paintbrush","Midges","CPOM",0.356,0.326
+"85","Paintbrush","Simuliidae","Biofilm",0.804,0.115
+"86","Paintbrush","Simuliidae","CPOM",0.196,0.115
+"87","SFTC","Allomyia","Biofilm",0.639,0.0865
+"88","SFTC","Allomyia","CPOM",0.361,0.145
+"89","SFTC","Baetidae","Biofilm",0.798,0.072
+"90","SFTC","Baetidae","CPOM",0.201,0.116
+"91","SFTC","Cinygmula","Biofilm",0.76,0.0735
+"92","SFTC","Cinygmula","CPOM",0.24,0.126
+"93","SFTC","Epeorus","Biofilm",0.755,0.107
+"94","SFTC","Epeorus","CPOM",0.245,0.199
+"95","SFTC","Megarcys","Biofilm",0.809,0.089
+"96","SFTC","Megarcys","CPOM",0.191,0.127
+"97","SFTC","Midges","Biofilm",0.328,0.0425
+"98","SFTC","Midges","CPOM",0.672,0.065
+"99","SFTC","Rhyacophila","Biofilm",0.404,0.125
+"100","SFTC","Rhyacophila","CPOM",0.596,0.195
+"101","SFTC","Simuliidae","Biofilm",0.729,0.0695
+"102","SFTC","Simuliidae","CPOM",0.271,0.118
+"103","SFTC","Zapada","Biofilm",0.637,0.068
+"104","SFTC","Zapada","CPOM",0.363,0.12
+"105","Skillet","Agathon","Biofilm",0.281,0.17
+"106","Skillet","Agathon","CPOM",0.051,0.04
+"107","Skillet","Agathon","Hydrurus",0.668,0.176
+"108","Skillet","Allomyia","Biofilm",0.458,0.204
+"109","Skillet","Allomyia","CPOM",0.047,0.045
+"110","Skillet","Allomyia","Hydrurus",0.495,0.213
+"111","Skillet","Lednia","Biofilm",0.529,0.148
+"112","Skillet","Lednia","CPOM",0.087,0.067
+"113","Skillet","Lednia","Hydrurus",0.383,0.157
+"114","Skillet","Midges","Biofilm",0.131,0.183
+"115","Skillet","Midges","CPOM",0.049,0.046
+"116","Skillet","Midges","Hydrurus",0.82,0.192
+"117","Skillet","Rhyacophila","Biofilm",0.23,0.22
+"118","Skillet","Rhyacophila","CPOM",0.017,0.018
+"119","Skillet","Rhyacophila","Hydrurus",0.753,0.223
+"120","Skillet","Simuliidae","Biofilm",0.408,0.131
+"121","Skillet","Simuliidae","CPOM",0.084,0.057
+"122","Skillet","Simuliidae","Hydrurus",0.508,0.139
+"123","Wind Cave","Acari","Biofilm",0.039,0.04
+"124","Wind Cave","Acari","CPOM",0.185,0.07
+"125","Wind Cave","Acari","Hydrurus",0.776,0.08
+"126","Wind Cave","Allomyia","Biofilm",0.03,0.038
+"127","Wind Cave","Allomyia","CPOM",0.433,0.124
+"128","Wind Cave","Allomyia","Hydrurus",0.537,0.13
+"129","Wind Cave","Lednia","Biofilm",0.039,0.068
+"130","Wind Cave","Lednia","CPOM",0.079,0.064
+"131","Wind Cave","Lednia","Hydrurus",0.882,0.098
+"132","Wind Cave","Megarcys","Biofilm",0.114,0.082
+"133","Wind Cave","Megarcys","CPOM",0.18,0.065
+"134","Wind Cave","Megarcys","Hydrurus",0.705,0.104
+"135","Wind Cave","Midges","Biofilm",0.019,0.028
+"136","Wind Cave","Midges","CPOM",0.615,0.102
+"137","Wind Cave","Midges","Hydrurus",0.366,0.104
+"138","Wind Cave","Simuliidae","Biofilm",0.045,0.062
+"139","Wind Cave","Simuliidae","CPOM",0.207,0.121
+"140","Wind Cave","Simuliidae","Hydrurus",0.748,0.139
+"141","Wind Cave","Zapada","Biofilm",0.03,0.03
+"142","Wind Cave","Zapada","CPOM",0.216,0.056
+"143","Wind Cave","Zapada","Hydrurus",0.754,0.06

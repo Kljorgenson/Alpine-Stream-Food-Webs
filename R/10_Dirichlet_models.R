@@ -27,23 +27,17 @@ diet_means_data <- spread1 %>% group_by(site) %>% summarise(n = length(Biofilm),
 diet_means_data
 
 # Combine diet and environmental data
-spread_env_mean_dat <- merge(diet_means_data, Envi_data)
-
-# Make all proportions sum to 1 (this is a slight adjustment)
-spread_env_m_dat <- spread_env_mean_dat %>% group_by(site) %>% mutate(Biofilm = round(Biofilm/(Biofilm+CPOM+Hydrurus),2),
-                                                      CPOM = round(CPOM/(Biofilm+CPOM+Hydrurus),2),
-                                                      Hydrurus = round(Hydrurus/(Biofilm+CPOM+Hydrurus),2))
-spread_env_m_dat
-
-
-spread_env_m_dat %>% group_by(site) %>% summarise(tot = sum(Biofilm+CPOM+Hydrurus)) # Check that they sum to 1
-
+spread_env_m_dat <- merge(diet_means_data, Envi_data)
 
 ### Construct models
 
 # Plot site diet means
 ggtern(spread_env_m_dat, aes(Biofilm, Hydrurus, CPOM, color = Primary_water_source)) + geom_point() +
   theme_bw() + scale_color_manual(values = 1:3, name = "Hydrologic source")
+
+# Reorder factors for hydrologic source
+spread_env_m_dat$Primary_water_source <- factor(spread_env_m_dat$Primary_water_source, levels = c("Subterranean ice", "Snowmelt", "Glacier"))
+
 
 # Model using DirichletReg
 # Common parameterization
@@ -55,7 +49,7 @@ plot(DD)
 m6c <- DirichReg(DD ~ Primary_water_source, spread_env_m_dat, model = "common")
 summary(m6c)
 fitted(m6c, mu = TRUE, alpha = T, phi = T)
-
+confint(m6c)
 
 
 m1c <- DirichReg(DD ~ SPC, spread_env_m_dat, model = "common")
@@ -89,8 +83,8 @@ summary(m9c)
 m10c <- DirichReg(DD ~ aspect, spread_env_m_dat, model = "common")
 summary(m10c)
 
-m11c <- DirichReg(DD ~ fluoride, spread_env_mean_dat, model = "common")
-summary(m11c) # Doesn't converge
+#m11c <- DirichReg(DD ~ fluoride, spread_env_m_dat, model = "common")
+#summary(m11c) # Doesn't converge
 
 m12c <- DirichReg(DD ~ chloride, spread_env_m_dat, model = "common")
 summary(m12c)
@@ -99,51 +93,40 @@ m13c <- DirichReg(DD ~ sulfate, spread_env_m_dat, model = "common")
 summary(m13c)
 
 # Models with multiple environmental variables
-m14c <- DirichReg(DD ~ Elevation + Tmean, spread_env_m_dat, model = "common")
+m14c <- DirichReg(DD ~ SPC + Tmean, spread_env_m_dat, model = "common")
 summary(m14c)
 
-#m14.1c <- DirichReg(DD ~ SPC + pH + fluoride + slope + Elevation, weights = w, spread_env_mean_dat, model = "common")
-#summary(m14.1c)
-#m14.2c <- DirichReg(DD ~ slope + SPC +fluoride + chloride + pH+ Elevation, weights = w, spread_env_mean_dat, model = "common")
-#summary(m14.2c)
-#m14.3c <- DirichReg(DD ~ slope + SPC +fluoride + nitrate +pH+ Elevation, weights = w, spread_env_mean_dat, model = "common")
-#summary(m14.3c)
-
-#m16.1c <- DirichReg(DD ~ Primary_water_source  + Elevation + TSS_g_L+ Tmax +DO_mg_L, weights = w, spread_env_m_dat, model = "common")
-#summary(m16.1c)
 
 # Models with hydrologic source and environmental variables
 m16.2c <- DirichReg(DD ~ Primary_water_source + Tmax, spread_env_m_dat, model = "common")
 summary(m16.2c)
-m16.3c <- DirichReg(DD ~ Primary_water_source + Tmean, spread_env_m_dat, model = "common")
-summary(m16.3c)
+
 
 # Models with PCA components
 m20c <- DirichReg(DD ~ PCA1, spread_env_m_dat, model = "common")
 summary(m20c)
 m21c <- DirichReg(DD ~ PCA2, spread_env_m_dat, model = "common")
 summary(m21c)
-m22c <- DirichReg(DD ~ PCA2 + PCA1, spread_env_m_dat, model = "common")
-summary(m22c)
 
 # Model comparison using corrected AIC
 # npar = number of parameters
 # sample size = 9
 AIC_c <- function(model){-2*model$logLik + 2*model$npar*9/(9-model$npar-1)}
 
-AICc_dat <- data.frame(Formula = c("~ SPC", "~ Tmean", "~ Tmax", "~ pH", "~ nitrate", "~ TSS", "~ elevation", "~ DO", "~ slope", "~ aspect", "~ chloride", "~ sulfate", "~ Primary water source", "~ Elevation + Tmean", "~ Primary_water_source + Tmax", "~ PCA1", "~ PCA2", "~ PCA1 + PCA2"),
-                       model = c("m1c", "m2c", "m2.5c", "m3c", "m4c", "m5c","m7c","m8c","m9c","m10c","m12c","m13c", "m6c", "m14c", "m16.2c","m20c","m21c", "m22c"), AICc =c(AIC_c(m1c), AIC_c(m2c), AIC_c(m2.5c), AIC_c(m3c), AIC_c(m4c), AIC_c(m5c),  
-                                                                                                                                                                    AIC_c(m7c), AIC_c(m8c), AIC_c(m9c), AIC_c(m10c), AIC_c(m12c), AIC_c(m13c), AIC_c(m6c), AIC_c(m14c),AIC_c(m16.2c), AIC_c(m20c), AIC_c(m21c),AIC_c(m22c)) )
-AICc_dat
+AICc_d <- data.frame(Formula = c("~ SPC", "~ Tmean", "~ Tmax", "~ pH", "~ nitrate", "~ TSS", "~ elevation", "~ DO", "~ slope", "~ aspect", "~ chloride", "~ sulfate", "~ Primary water source", "~ SPC + Tmean", "~ Primary_water_source + Tmax", "~ PCA1", "~ PCA2"),
+                       model = c("m1c", "m2c", "m2.5c", "m3c", "m4c", "m5c","m7c","m8c","m9c","m10c","m12c","m13c", "m6c", "m14c", "m16.2c","m20c","m21c"), AICc =c(AIC_c(m1c), AIC_c(m2c), AIC_c(m2.5c), AIC_c(m3c), AIC_c(m4c), AIC_c(m5c),  
+                                                                                                                                                                    AIC_c(m7c), AIC_c(m8c), AIC_c(m9c), AIC_c(m10c), AIC_c(m12c), AIC_c(m13c), AIC_c(m6c), AIC_c(m14c),AIC_c(m16.2c), AIC_c(m20c), AIC_c(m21c)) )
+AICc_d
 
 # Table of AIC values for significant models
 # Significant variables: Tmax, pH, nitrate, TSS, elevation, DO, aspect and chloride
-AICc_d <- AICc_dat %>% filter(!Formula %in% c("~slope", "~nitrate", "~TSS", "~ PCA2", "~ PCA1 + PCA2"))                                                                                                                                               
 AICc_d$AICc <- round(AICc_d$AICc, 1)
 AICc<-AICc_d[order(AICc_d$AICc),]
 AICc
 
 write.csv(AICc, "Output//AICc table.csv")
+
+
 
 
 ## Plot of site mean diet composition and model fits by hydrologic source
@@ -170,9 +153,6 @@ p100 <- means %>% ggplot() +
   theme(legend.position = "bottom")
   
 p100
-ggsave("Output//Paper figures//Diet by Hydro.png", width = 5, height = 3.6)
-
-
 
                                                                               
 ## Plot model results for representative variables
@@ -180,62 +160,46 @@ ggsave("Output//Paper figures//Diet by Hydro.png", width = 5, height = 3.6)
 # Predicted data
 a <- rep(1,1000) # Set model weights to 1 to not weight the points
 
-x10<- seq(min(spread_env_mean_dat$aspect), max(spread_env_mean_dat$aspect), length.out = 1000)
-pred10 <- predict(m10c, newdata = data.frame(aspect=x10, w = a))
-preds10<- data.frame(source = c(rep("Biofilm", length(pred10[,1])), rep("CPOM", length(pred10[,2])), rep("Hydrurus", length(pred10[,3]))),
-                    pred = c(pred10[,1], pred10[,2], pred10[,3]), x = rep(x10, 3), env_var = rep("aspect", length(pred10[,1])),
-                    sig = c(rep("n", length(pred10[,1])), rep("y", length(pred10[,1])), rep("n", length(pred10[,1])) )) 
 
-
-x2.5<- seq(min(spread_env_mean_dat$Tmax), max(spread_env_mean_dat$Tmax), length.out = 1000)
-pred2.5 <- predict(m2.5c, newdata = data.frame(Tmax=x2.5, w = a))
-preds2.5<- data.frame(source = c(rep("Biofilm", length(pred2.5[,1])), rep("CPOM", length(pred2.5[,2])), rep("Hydrurus", length(pred2.5[,3]))),
-                    pred = c(pred2.5[,1], pred2.5[,2], pred2.5[,3]), x = rep(x2.5, 3), env_var = rep("Tmax", length(pred2.5[,1])),
-                    sig = c(rep("y", length(pred2.5[,1])), rep("y", length(pred2.5[,1])), rep("n", length(pred2.5[,1])) )) 
-summary(m20c)
-x3<- seq(min(spread_env_mean_dat$pH), max(spread_env_mean_dat$pH), length.out = 1000)
-pred3 <- predict(m3c, newdata = data.frame(pH=x3, w = a))
+x2<- seq(min(spread_env_m_dat$Tmean), max(spread_env_m_dat$Tmean), length.out = 1000)
+pred2 <- predict(m2c, newdata = data.frame(Tmean=x2, w = a))
+preds2<- data.frame(source = c(rep("Biofilm", length(pred2[,1])), rep("CPOM", length(pred2[,2])), rep("Hydrurus", length(pred2[,3]))),
+                    pred = c(pred2[,1], pred2[,2], pred2[,3]), x = rep(x2, 3), env_var = rep("Tmean", length(pred2[,1])),
+                    sig = c(rep("y", length(pred2[,1])), rep("y", length(pred2[,1])), rep("n", length(pred2[,1])) )) 
+summary(m5c)
+x3<- seq(min(spread_env_m_dat$TSS_g_L), max(spread_env_m_dat$TSS_g_L), length.out = 1000)
+pred3 <- predict(m5c, newdata = data.frame(TSS_g_L=x3, w = a))
 preds3<- data.frame(source = c(rep("Biofilm", length(pred3[,1])), rep("CPOM", length(pred3[,2])), rep("Hydrurus", length(pred3[,3]))),
-                    pred = c(pred3[,1], pred3[,2], pred3[,3]), x = rep(x3, 3), env_var = rep("pH", length(pred3[,1])),
-                    sig = c(rep("y", length(pred3[,1])), rep("y", length(pred3[,1])), rep("y", length(pred3[,1])) )) 
+                    pred = c(pred3[,1], pred3[,2], pred3[,3]), x = rep(x3, 3), env_var = rep("TSS_g_L", length(pred3[,1])),
+                    sig = c(rep("y", length(pred3[,1])), rep("y", length(pred3[,1])), rep("n", length(pred3[,1])) )) 
 
-x1<- seq(min(spread_env_mean_dat$SPC), max(spread_env_mean_dat$SPC), length.out = 1000)
+x1<- seq(min(spread_env_m_dat$SPC), max(spread_env_m_dat$SPC), length.out = 1000)
 pred1 <- predict(m1c, newdata = data.frame(SPC=x1, w = a))
 preds1<- data.frame(source = c(rep("Biofilm", length(pred1[,1])), rep("CPOM", length(pred1[,2])), rep("Hydrurus", length(pred1[,3]))),
                     pred = c(pred1[,1], pred1[,2], pred1[,3]), x = rep(x1, 3), env_var = rep("SPC", length(pred1[,1])),
                     sig = c(rep("n", length(pred1[,1])), rep("y", length(pred1[,1])), rep("y", length(pred1[,1])) )) 
 
-x7<- seq(min(spread_env_mean_dat$Elevation), max(spread_env_mean_dat$Elevation), length.out = 1000)
-pred7 <- predict(m7c, newdata = data.frame(Elevation=x7, w = a))
+x7<- seq(min(spread_env_m_dat$chloride), max(spread_env_m_dat$chloride), length.out = 1000)
+pred7 <- predict(m12c, newdata = data.frame(chloride=x7, w = a))
 preds7<- data.frame(source = c(rep("Biofilm", length(pred7[,1])), rep("CPOM", length(pred7[,2])), rep("Hydrurus", length(pred7[,3]))),
-                    pred = c(pred7[,1], pred7[,2], pred7[,3]), x = rep(x7, 3), env_var = rep("Elevation", length(pred7[,1])),
-                    sig = c(rep("n", length(pred7[,1])), rep("y", length(pred7[,1])), rep("n", length(pred7[,1])) )) 
+                    pred = c(pred7[,1], pred7[,2], pred7[,3]), x = rep(x7, 3), env_var = rep("chloride", length(pred7[,1])),
+                    sig = c(rep("n", length(pred7[,1])), rep("y", length(pred7[,1])), rep("y", length(pred7[,1])) )) 
 
-x20<- seq(min(spread_env_mean_dat$PCA1), max(spread_env_mean_dat$PCA1), length.out = 1000)
-pred20 <- predict(m20c, newdata = data.frame(PCA1=x20, w = a))
+x20<- seq(min(spread_env_m_dat$PCA2), max(spread_env_m_dat$PCA2), length.out = 1000)
+pred20 <- predict(m21c, newdata = data.frame(PCA2=x20, w = a))
 preds20<- data.frame(source = c(rep("Biofilm", length(pred20[,1])), rep("CPOM", length(pred20[,2])), rep("Hydrurus", length(pred20[,3]))),
-                    pred = c(pred20[,1], pred20[,2], pred20[,3]), x = rep(x20, 3), env_var = rep("PCA1", length(pred20[,1])),
-                    sig = c(rep("n", length(pred20[,1])), rep("y", length(pred20[,1])), rep("n", length(pred20[,1])) )) 
+                    pred = c(pred20[,1], pred20[,2], pred20[,3]), x = rep(x20, 3), env_var = rep("PCA2", length(pred20[,1])),
+                    sig = c(rep("y", length(pred20[,1])), rep("n", length(pred20[,1])), rep("n", length(pred20[,1])) )) 
 
-confint(m20c)
-con <- predict(m20c, newdata = data.frame(PCA1=x20, w = a), interval="confidence")
-head(con)
-head(preds20)
-summary(m20c)
 
 # Make dataframe of predicted data
-pred_dat <- rbind(preds2.5, preds3, preds1, preds7, preds10, preds20)
+pred_dat <- rbind(preds2, preds3, preds1, preds7, preds20)
 head(pred_dat)
 pred_dat$env_var <- as.factor(pred_dat$env_var)
-class(pred_dat$env_var)
-any(is.na(env_dat_long$env_var))
 
-levels(pred_dat$env_var)
-
-head(spread_env_mean_dat)
 # Make dataframe long: gather environmental variables
-env_dat_long <- spread_env_mean_dat %>% select(site, Biofilm, CPOM, Hydrurus, Tmax, pH, SPC, aspect, Elevation, PCA1) %>% 
-  gather(env_var, value, Tmax:PCA1) %>%
+env_dat_long <- spread_env_m_dat %>% select(site, Biofilm, CPOM, Hydrurus, Tmean, chloride, SPC, TSS_g_L, PCA2) %>% 
+  gather(env_var, value, Tmean:PCA2) %>%
   select(site, Biofilm, CPOM, Hydrurus, env_var, value) %>% 
   gather(source, Mean, Biofilm:Hydrurus)
 head(env_dat_long)
@@ -244,14 +208,15 @@ env_dat_long$value <- as.numeric(env_dat_long$value)
 levels(env_dat_long$env_var)
 
 # Facet plot with 6 models
-env_var_labs <- c("pH","Tmax (\u00B0C)","Aspect","SPC", "Elevation (m)", "PC1") # Set labels for facets
-names(env_var_labs) <- c("pH","Tmax", "aspect","SPC", "Elevation", "PCA1")
+cl <- expression(paste("Chloride (", mu,"g/L)"))
+env_var_labs <- c("SPC",cl, "TSS (g/L)","Tmean (\u00B0C)", "PCA2") # Set labels for facets
+names(env_var_labs) <- c("SPC","chloride", "TSS_g_L","Tmean", "PCA2")
 env_dat_long$env_var <- factor(env_dat_long$env_var,      # Reorder factor levels
-                         levels = c("pH", "Tmax", "aspect", "SPC", "Elevation", "PCA1"))
+                         levels = c("SPC","chloride", "TSS_g_L","Tmean", "PCA2"))
 
 
 p <- ggplot(data = env_dat_long, aes(value, Mean, color = source)) +
-  geom_point() + facet_wrap(~env_var, scales = "free_x", labeller = labeller(env_var = env_var_labs)) +
+  facet_wrap(~env_var, scales = "free_x", nrow = 1, labeller = labeller(env_var = env_var_labs)) + geom_point() + 
   geom_line(data = pred_dat, aes(x, pred, color = source, linetype = sig), size = 1) +
   scale_color_brewer("Resource", palette = "Dark2") + theme_bw() + ylab("Diet Proportion") +
   scale_linetype_manual(values=c("dashed", "solid"), guide = "none") + xlab(NULL) # Make lines dashed for non-significant relationships
@@ -270,14 +235,9 @@ ggsave("Output//Paper figures//Dirichlet envi facet.png", width = 7, height = 4)
 n <- spread1 %>% group_by(taxa) %>% summarise(n = length(taxa))
 n
 
-# Make all proportions sum to 1
-spread_2 <- spread1 %>% group_by(site, taxa) %>% mutate(Biofilm = round(Biofilm/(Biofilm+CPOM+Hydrurus),2),
-                                                                      CPOM = round(CPOM/(Biofilm+CPOM+Hydrurus),2),
-                                                                      Hydrurus = round(Hydrurus/(Biofilm+CPOM+Hydrurus),2))
-
 # Create dataframe
-spread_2 %>% group_by(site, taxa) %>% summarise(tot = sum(Biofilm+CPOM+Hydrurus))
-spread_taxa <- merge(spread_2, Envi_data)
+spread1 %>% group_by(site, taxa) %>% summarise(tot = sum(Biofilm+CPOM+Hydrurus))
+spread_taxa <- merge(spread1, Envi_data)
 
 # Select taxa and hydrologic sources
 spread_t <- filter(spread_taxa, taxa == "Zapada", Primary_water_source %in% c("Glacier", "Subterranean ice"))
@@ -296,48 +256,6 @@ summary(tm1)
 data_diet %>% filter(taxa %in% c("Lednia", "Zapada")) %>% group_by(taxa, source) %>% summarise(max = max(Mean),
                                                                                                mean = mean(Mean),
                                                                                                sd = sd(Mean))
-
-
-library(data.table)
-boot.fun <- function(x){
-  
-  dat <- spread_t[, c(3:5,7)]
-  sub <- dat %>% filter(Primary_water_source == "Subterranean ice")
-  glacier <- dat %>% filter(Primary_water_source == "Glacier")
-  
-  sub.dat <- sub[sample(nrow(sub), 2, replace = T),]
-  glacier.dat <- glacier[sample(nrow(glacier), 2, replace = T),]
-  data <- rbind(sub.dat, glacier.dat)
-  
-  # Sum to 1
-  data <- data %>% group_by() %>% mutate(Biofilm = round(Biofilm/(Biofilm+CPOM+Hydrurus),2),
-                                         CPOM = round(CPOM/(Biofilm+CPOM+Hydrurus),2),
-                                         Hydrurus = round(Hydrurus/(Biofilm+CPOM+Hydrurus),2))
-  DD <-DR_data(data[,1:3])
-  m6c <- DirichReg(DD ~ Primary_water_source, data, model = "common")
-  
-  df <- as.data.frame(fitted(m6c, mu = TRUE, alpha = F, phi = F))
-  df$Primary_water_source <- c(rep("Subterranean ice", 2), rep("Glacier", 2))
-  df <- df %>% unique()
-  return(df)
-}
-
-boot.fun()
-
-list.b <- lapply(1:100, boot.fun)
-boot.b <- rbindlist(list.b)
-head(boot.b)
-
-boot.ci.b <- boot.b  %>% pivot_longer(cols = 1:3, names_to = "source") %>% group_by(Primary_water_source, source) %>%
-  summarise(p2.5 = quantile(value, probs = 0.025),
-            p50 = quantile(value, probs = 0.5),
-            p97.5 = quantile(value, probs = 0.975))
-
-
-boot.ci.b %>% ggplot(aes(p50, Primary_water_source, color = source)) + geom_point() + geom_point(aes(x = p2.5, Primary_water_source, color = source), shape = 2) +
-  geom_point() + geom_point(aes(x = p97.5, Primary_water_source, color = source), shape = 2)
-
-
 
 
 

@@ -189,18 +189,11 @@ ggsave("Output//Paper figures//Biomass by hydro.png", width = 5, height = 3.6)
 
 ### Facet plot of environmental variable models
 
-x2<- seq(min(spread_bm_envi_dat$Tmean), max(spread_bm_envi_dat$Tmean), length.out = 1000)
-pred2 <- predict(m2b, newdata = data.frame(Tmean=x2))
-preds2<- data.frame(source = c(rep("Biofilm", length(pred2[,1])), rep("CPOM", length(pred2[,2])), rep("Hydrurus", length(pred2[,3]))),
-                      pred = c(pred2[,1], pred2[,2], pred2[,3]), x = rep(x2, 3), env_var = rep("Tmean", length(pred2[,1])),
-                      sig = c(rep("y", length(pred2[,1])), rep("n", length(pred2[,1])), rep("n", length(pred2[,1])) )) 
-summary(m12b)
-
 x1<- seq(min(spread_bm_envi_dat$SPC), max(spread_bm_envi_dat$SPC), length.out = 1000)
 pred1 <- predict(m1b, newdata = data.frame(SPC=x1))
 preds1<- data.frame(source = c(rep("Biofilm", length(pred1[,1])), rep("CPOM", length(pred1[,2])), rep("Hydrurus", length(pred1[,3]))),
                     pred = c(pred1[,1], pred1[,2], pred1[,3]), x = rep(x1, 3), env_var = rep("SPC", length(pred1[,1])),
-                    sig = c(rep("y", length(pred1[,1])), rep("y", length(pred1[,1])), rep("y", length(pred1[,1])) )) 
+                    sig = c(rep("n", length(pred1[,1])), rep("y", length(pred1[,1])), rep("y", length(pred1[,1])) )) 
 
 x5<- seq(min(spread_bm_envi_dat$TSS_g_L), max(spread_bm_envi_dat$TSS_g_L), length.out = 1000)
 pred5 <- predict(m5b, newdata = data.frame(TSS_g_L=x5))
@@ -212,38 +205,34 @@ x12<- seq(min(spread_bm_envi_dat$chloride), max(spread_bm_envi_dat$chloride), le
 pred12 <- predict(m12b, newdata = data.frame(chloride=x12))
 preds12<- data.frame(source = c(rep("Biofilm", length(pred12[,1])), rep("CPOM", length(pred12[,2])), rep("Hydrurus", length(pred12[,3]))),
                      pred = c(pred12[,1], pred12[,2], pred12[,3]), x = rep(x12, 3), env_var = rep("chloride", length(pred12[,1])),
-                     sig = c(rep("y", length(pred12[,1])), rep("n", length(pred12[,1])), rep("n", length(pred12[,1])) )) 
+                     sig = c(rep("n", length(pred12[,1])), rep("n", length(pred12[,1])), rep("y", length(pred12[,1])) )) 
 
 
-pred_dat <- rbind(preds2, preds1, preds5, preds12)
-head(pred_dat)
-pred_dat$env_var <- as.factor(pred_dat$env_var)
-class(pred_dat$env_var)
-any(is.na(env_dat_long$env_var))
-
-levels(pred_dat$env_var)
+pred_dat.b <- rbind(preds1, preds5, preds12)
+head(pred_dat.b)
+pred_dat.b$env_var <- as.factor(pred_dat.b$env_var)
 
 # make diet dat long
-env_dat_long <- spread_bm_envi_dat %>% select(site, Biofilm, CPOM, Hydrurus, Tmean, SPC, TSS_g_L, chloride) %>% 
-  gather(env_var, value, Tmean:chloride) %>%
+env_dat_long.b <- spread_bm_envi_dat %>% select(site, Biofilm, CPOM, Hydrurus, SPC, TSS_g_L, chloride) %>% 
+  gather(env_var, value, SPC:chloride) %>%
   select(site, Biofilm, CPOM, Hydrurus, env_var, value) %>% 
   gather(source, Mean, Biofilm:Hydrurus)
-head(env_dat_long)
-env_dat_long$env_var <- as.factor(env_dat_long$env_var)
-env_dat_long$value <- as.numeric(env_dat_long$value)
-levels(env_dat_long$env_var)
+head(env_dat_long.b)
+env_dat_long.b$env_var <- as.factor(env_dat_long.b$env_var)
+env_dat_long.b$value <- as.numeric(env_dat_long.b$value)
+levels(env_dat_long.b$env_var)
 
 # plot
 
 cl <- paste("Chloride (", mu,"g/L)")
 env_var_labs <- c("SPC", "Tmean (\u00B0C)", "Chloride (ug/L)", "TSS (g/L)")
 names(env_var_labs) <- c("SPC", "Tmean", "chloride", "TSS_g_L")
-#env_dat_long$env_var <- factor(env_dat_long$env_var,      # Reordering group factor levels
+#env_dat_long.b$env_var <- factor(env_dat_long.b$env_var,      # Reordering group factor levels
 #                         levels = c("PCA1", "PCA2", "pH", "Tmax", "aspect", "SPC"))
 
-p <- ggplot(data = env_dat_long, aes(value, Mean, color = source)) +
+p <- ggplot(data = env_dat_long.b, aes(value, Mean, color = source)) +
   geom_point() + facet_wrap(~env_var, scales = "free_x", labeller = labeller(env_var = env_var_labs)) +
-  geom_line(data = pred_dat, aes(x, pred, color = source, linetype = sig), size = 1) +
+  geom_line(data = pred_dat.b, aes(x, pred, color = source, linetype = sig), size = 1) +
   scale_color_brewer("Resource", palette = "Dark2") + theme_bw() + ylab("% Biomass") +
   scale_linetype_manual(values=c("dashed", "solid"), guide = "none") + xlab(NULL)
 p
@@ -251,4 +240,41 @@ ggsave("Output//Paper figures//Dirichlet envi facet biomass.png", width = 5, hei
 
 
 
+
+### Combined plot of diet proportions and biomass
+env_dat_long.b2 <- spread_bm_envi_dat %>% select(site, Biofilm, CPOM, Hydrurus, SPC, TSS_g_L, chloride, PCA2, Tmean) %>% 
+  gather(env_var, value, SPC:chloride) %>%
+  select(site, Biofilm, CPOM, Hydrurus, env_var, value) %>% 
+  gather(source, Mean, Biofilm:Hydrurus)
+head(env_dat_long.b2)
+env_dat_long.b$env_var <- as.factor(env_dat_long.b2$env_var)
+env_dat_long.b$value <- as.numeric(env_dat_long.b2$value)
+levels(env_dat_long.b2$env_var)
+
+
+env_dat_long.b2$type <- "Biomass"
+env_dat_long$type <- "Diet"
+pred_dat.b$type <- "Biomass"
+pred_dat$type <- "Diet"
+
+comb_env_dat_long <- full_join(env_dat_long.b2, env_dat_long)
+comb_pred_dat <- full_join(pred_dat.b, pred_dat)
+
+comb_env_dat_long$env_var <- factor(comb_env_dat_long$env_var, levels = c("SPC", "chloride", "TSS_g_L", "Tmean", "PCA2"))
+comb_env_dat_long$type <- factor(comb_env_dat_long$type, levels = c("Diet", "Biomass"))
+comb_pred_dat$type <- factor(comb_pred_dat$type, levels = c("Diet", "Biomass"))
+
+env.labs <- c("SPC (\U00B5S/cm)", "Chloride (\U00B5g/L)", "TSS (g/L)", "Tmean (\u00B0C)",  "PC2")
+names(env.labs) <- c("SPC","chloride", "TSS_g_L","Tmean", "PCA2")
+p <- ggplot(data = comb_env_dat_long, aes(value, Mean, color = source)) +
+  facet_grid(rows = vars(type), cols = vars(env_var), scales = "free_x", labeller = labeller(env_var = env.labs)) +
+  geom_point() + 
+  geom_line(data = comb_pred_dat, aes(x, pred, color = source, linetype = sig), size = 1) +
+  scale_color_brewer("Resource", palette = "Dark2",labels = c("Biofilm", "CPOM", expression(italic("Hydrurus")))) + theme_bw() + ylab("Proportion") +
+  scale_linetype_manual(values=c("dashed", "solid"), guide = "none") + xlab(NULL) +
+  theme(strip.background =element_rect(fill="white")) + scale_x_continuous(n.breaks = 3) 
+
+p
+
+ggsave("Output//Paper figures//Dirichlet envi facet biomass and diet.png", width = 7, height = 3)
 

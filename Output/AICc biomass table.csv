@@ -1,17 +1,17 @@
 "","Formula","model","AICc"
-"13","~ Primary water source","m6c",-214.2
-"14","~ Elevation + Tmean","m14c",-188.4
-"15","~ Primary_water_source + Tmax","m16.2c",-107.5
-"1","~ SPC","m1c",21.7
-"11","~ chloride","m12c",28.1
-"6","~ TSS","m5c",28.7
-"3","~ Tmax","m2.5c",29.2
-"16","~ PCA1","m20c",29.4
-"2","~ Tmean","m2c",29.5
-"8","~ DO","m8c",30.5
-"12","~ sulfate","m13c",33.9
-"4","~ pH","m3c",35.1
-"7","~ elevation","m7c",35.6
-"5","~ nitrate","m4c",36
-"9","~ slope","m9c",37.1
-"10","~ aspect","m10c",37.2
+"13","~ Primary water source","m6c",-210.6
+"14","~ Elevation + Tmean","m14c",-200
+"15","~ Primary_water_source + Tmax","m16.2c",-107
+"1","~ SPC","m1c",23.9
+"11","~ chloride","m12c",29.7
+"6","~ TSS","m5c",31.8
+"2","~ Tmean","m2c",31.9
+"3","~ Tmax","m2.5c",31.9
+"16","~ PCA1","m20c",32.3
+"8","~ DO","m8c",32.8
+"12","~ sulfate","m13c",34.9
+"7","~ elevation","m7c",35.9
+"4","~ pH","m3c",36.3
+"5","~ nitrate","m4c",37.4
+"9","~ slope","m9c",37.4
+"10","~ aspect","m10c",37.7
