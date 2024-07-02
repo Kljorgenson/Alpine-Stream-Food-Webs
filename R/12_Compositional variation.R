@@ -15,7 +15,7 @@ Envi_data <- read.csv("Output//Envi_data.csv")
 
 diet_data <- read.csv("Output//diet_data_clean.csv")
 
-diet_means_data <- diet_data %>% group_by(site, source) %>% summarise(Mean = mean(Mean, na.rm = TRUE,
+diet_means_data <- diet_data %>% group_by(site, source) %>% dplyr::summarise(Mean = mean(Mean, na.rm = TRUE,
                                                                                   SD = sd(Mean, na.rm = TRUE)))
 diet_means_data
 
@@ -68,7 +68,7 @@ summary(aov1 <- aov(var ~ W_source, data = site_var))
 
 ## Among-site variation using site means
 # Calculate site diet porportion means
-site_means <- spread_env_dat %>% group_by(site) %>% summarise(Biofilm = mean(Biofilm), CPOM = mean(CPOM), Hydrurus = mean(Hydrurus), Primary_water_source = unique(Primary_water_source))
+site_means <- spread_env_dat %>% group_by(site) %>% dplyr::summarise(Biofilm = mean(Biofilm), CPOM = mean(CPOM), Hydrurus = mean(Hydrurus), Primary_water_source = unique(Primary_water_source))
 site_means
 # Among-site variation
 among_var <- mvar(site_means[,2:4])
@@ -104,7 +104,7 @@ ggsave("Output//taxa diet tern.png", width = 6, height = 6)
 
 ## Ternary plot with all taxa colored by stream type
 
-w_source_means <- spread_env_mean_dat %>% group_by(Primary_water_source) %>% summarise(Biofilm = mean(Biofilm),
+w_source_means <- spread_env_m_dat %>% group_by(Primary_water_source) %>% summarise(Biofilm = mean(Biofilm),
                                                                      CPOM = mean(CPOM),
                                                                      Hydrurus = mean(Hydrurus))
 
@@ -114,9 +114,9 @@ t1 <- spread_env_dat %>%
   scale_color_manual(values = c("#2171b5", "#9ecae1", "#08306b"), name="Hydrologic Source") +
   theme(legend.position= c(.85,.83)) +
   geom_point(data = w_source_means, aes(Biofilm, CPOM, Hydrurus, fill = Primary_water_source), pch = 21, cex = 7, show.legend = FALSE) +
-  scale_fill_manual(values = c("#2171b5", "#9ecae1", "#08306b"))
+  scale_fill_manual(values = c("#2171b5", "#9ecae1", "#08306b")) + labs(z = expression(italic("Hydrurus")))
 t1
-ggsave("Output//Paper figures//taxa diet tern WS.png", width = 6, height = 6)
+ggsave("Output//Paper figures//taxa diet tern WS.png", width = 6, height = 6, dpi=400)
 
 # Ternary plot of most common taxa colored by stream type
 datws <-spread_env_dat %>% group_by(taxa, Primary_water_source) %>% summarise(Biofilm = mean(Biofilm),

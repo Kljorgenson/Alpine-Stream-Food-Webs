@@ -1,9 +1,10 @@
 "","Formula","model","AICc"
 "13","~ Primary water source","m6c",-210.6
-"14","~ Elevation + Tmean","m14c",-200
+"14","~ SPC + Tmean","m14c",-200
 "15","~ Primary_water_source + Tmax","m16.2c",-107
 "1","~ SPC","m1c",23.9
 "11","~ chloride","m12c",29.7
+"17","~ PCA2","m21c",31
 "6","~ TSS","m5c",31.8
 "2","~ Tmean","m2c",31.9
 "3","~ Tmax","m2.5c",31.9

@@ -127,33 +127,6 @@ AICc
 write.csv(AICc, "Output//AICc table.csv")
 
 
-
-
-## Plot of site mean diet composition and model fits by hydrologic source
-# Reformat data
-means <- spread_env_m_dat[,c(1,3,4,5,7)] %>% pivot_longer(cols = 2:4, names_to = "source")
-# Extract model fits
-df <- as.data.frame(predict(m6c))
-df$WS <- spread_env_m_dat$Primary_water_source
-df <- df %>% pivot_longer(cols = 1:3)
-df %>% ggplot(aes(WS, value, color = name)) + geom_boxplot()
-
-# Plot diet proportions by hydrologic source
-p100 <- means %>% ggplot() +
-  geom_boxplot(aes(Primary_water_source, value, col = source)) + 
-  geom_point(aes(Primary_water_source, value, col = source), cex = 2, shape = 21, position = position_dodge(width = 0.75)) +
-  scale_fill_brewer(palette = "Dark2", guide = "none") +
-  scale_color_brewer(palette = "Dark2") +
-  #annotate(geom="text", x=2, y=0.38, label="a", color="#D95F02") +
-  #annotate(geom="text", x=3, y=0.29, label="a", color="#D95F02") +
-  labs(fill = "Resource") + xlab(NULL) + 
-  ylab("Diet Proportion") + theme_bw() +
-  #scale_colour_continuous(guide = "none") +
-  geom_boxplot(data = df, aes(WS, value, fill = name), width = 1, position = position_dodge(width = 0.75)) +
-  theme(legend.position = "bottom")
-  
-p100
-
                                                                               
 ## Plot model results for representative variables
 # Create big dataframe for plotting

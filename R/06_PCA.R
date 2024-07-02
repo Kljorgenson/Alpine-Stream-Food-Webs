@@ -25,7 +25,7 @@ write.table(ind$coord, "Output//PCA_dat.txt")
 
 # Environmental PCA plot
 p1 <- autoplot(PCA_1, data = PCA_d, colour = 'Primary_water_source', loadings = TRUE, loadings.label = FALSE, loadings.colour = 1, size = 5) +
-theme_classic() + labs(colour = "Hydrologic source") + xlim(-0.6,0.7) +
+theme_classic() + labs(colour = "Hydrologic source") + xlim(-0.6,0.5) +
   geom_text(aes(label = "Tmean", x = -0.5, y = -0.07 ), cex = 4) +
   geom_text(aes(label = "Tmax", x = -0.5, y = -0.02 ), cex = 4) +
 geom_text(aes(label = "TSS", x = -0.3, y = 0.06 ) , cex = 4) +
@@ -41,6 +41,8 @@ geom_text(aes(label = "DO", x = 0.47, y = 0.02 ), cex = 4) +
   
 p1
 
+ggsave("Output/Paper figures/Diet PCA.png", width = 5.8, height = 4, dpi=400)
+
 
 ### PCA of diet proportions
 data_di <- read.csv("Output//diet_data_clean.csv")
@@ -48,7 +50,7 @@ data_di$site <- as.factor(data_di$site)
 levels(data_di$site) <- c("AK Basin","Cloudveil","Delta","Grizzly","NFTC", "Paintbrush", "SFTC", "Skillet", "Wind Cave" )
 head(data_di)
 
-diet_data <- data_di %>% group_by(site, source) %>% summarise(Mean = mean(Mean, na.rm = TRUE)) 
+diet_data <- data_di %>% group_by(site, source) %>% dplyr::summarise(Mean = mean(Mean, na.rm = TRUE)) 
 
 diet_dat <- diet_data %>% spread(key = source, value = Mean) # Make dataframe wide
 diet_dat[is.na(diet_dat)] <- 0 # Replace NA's for Hydrurus with zeroes
@@ -66,12 +68,14 @@ write.table(ind$coord, "Output//PCA_s_dat.txt")
 # Plot diet PCA
 p2 <- autoplot(PCA_s, data = diet_dat, colour = 'Primary_Water_Source', label = FALSE, loadings = TRUE, loadings.label = FALSE, loadings.colour = 1, size = 5) +
 theme_classic() +
-  geom_text(aes(label = "Hydrurus", x = -0.5, y = 0.27 ), cex = 4) +
+  geom_text(aes(label = "Hydrurus", x = -0.5, y = 0.27 ), cex = 4, fontface = "italic") +
   geom_text(aes(label = "CPOM", x = -0.1, y = -0.58 ) , cex = 4) +
   geom_text(aes(label = "Biofilm", x = 0.54, y = 0.12 ), cex = 4) +
   scale_color_manual(values = c("#2171b5", "#9ecae1", "#08306b"), name = "Hydrologic source") +#labs(legend = NULL) + geom_text(aes(label = site), nudge_y = -0.02, nudge_x = 0.05)
-xlim(-0.6, 0.7)
+xlim(-0.6, 0.7) + theme(legend.position = "bottom")
 p2
+
+ggsave("Output/Paper figures/legent.png", width = 6, height = 4, dpi=400)
 
 # Combine plots
 
