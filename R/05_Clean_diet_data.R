@@ -37,15 +37,25 @@ site_labs <- c("Cloudveil", "Delta", "Skillet", "Alaska Basin", "Wind Cave","S F
 names(site_labs) <- c("Cloudveil", "Delta", "Skillet", "AK Basin", "Wind Cave", "SFTC", "NFTC", "Grizzly", "Paintbrush")
 
 ## Plot
+# Dummy variables to set y-axis by row
+a <- data_diet %>% filter(site %in% c("Cloudveil", "Delta", "Skillet")) %>% ungroup() %>% select(taxa) %>% unique()
+b <-data_diet %>% filter(site %in% c("AK Basin", "Wind Cave", "SFTC")) %>% ungroup() %>% select(taxa) %>% unique()
+c <- data_diet %>% filter(site %in% c("NFTC", "Grizzly", "Paintbrush")) %>% ungroup() %>% select(taxa) %>% unique()
+df <- data.frame(site = c(rep("Cloudveil", length(a$taxa)), rep("Delta", length(a$taxa)),rep("Skillet", length(a$taxa)),rep("AK Basin", length(b$taxa)),rep("Wind", length(b$taxa)),rep("SFTC", length(b$taxa)),rep("NFTC", length(c$taxa)),rep("Grizzly", length(c$taxa)),rep("Paintbrush", length(c$taxa))),
+                 taxa = c(rep(a$taxa, 3),rep(b$taxa, 3),rep(c$taxa, 3)),
+                 Mean = rep(0.5, 99),
+                 source = rep("CPOM", 99))
+
+df2 <- full_join(data_diet, df)%>% na.omit()
 # Create ggplot
-p_wrap <- data_diet %>% ggplot(aes(Mean, reorder(taxa, desc(taxa)), color = source)) + geom_point() +
-  facet_wrap(~ site, labeller = labeller(site = site_labs)) + geom_errorbar(aes(xmin=Mean-SD, xmax=Mean+SD), width=1) +
+p_wrap <- df2  %>% ggplot(aes(Mean, reorder(taxa, desc(taxa)), color = source)) + geom_point() +
+  facet_grid(~ site, labeller = labeller(site = site_labs), nrow = 3, space = "fixed", scales = "free_y") + geom_errorbar(aes(xmin=Mean-SD, xmax=Mean+SD), width=1) +
   scale_color_manual(name = "Resource", labels = c("Biofilm", "CPOM", expression(italic("Hydrurus"))), values = c("#1B9E77", "#D95F02", "#7570B3", "#66A61E", "#E6AB02", "#A6761D")) +
-  xlab("Diet Proportion") + ylab("Taxon") + theme_bw() + theme(strip.text = element_text(color = 'white'), axis.text=element_text(size=8))
+  xlab("Diet Proportion") + ylab("Taxon") + theme_bw() + theme(strip.text = element_text(color = 'white'), legend.position = "top", axis.text=element_text(size=8))
 p_wrap
 
 # Color facet labels by water source
-png("Output//Paper figures//Diet props all.png", width = 3700, height = 4000, res = 600)
+png("Output//Paper figures//Diet props all.png", width = 3700, height = 5000, res = 600)
 g <- ggplot_gtable(ggplot_build(p_wrap))
 stripr <- which(grepl('strip-t', g$layout$name))
 fills <- c("#6baed6", "#6baed6", "#6baed6", "#08306b", "#08306b", "#6baed6", "#2171b5","#2171b5","#2171b5")

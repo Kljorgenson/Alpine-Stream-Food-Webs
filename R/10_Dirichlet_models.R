@@ -14,7 +14,7 @@ Envi_data <- read.csv("Output//Envi_data.csv") # Environmental variables
 diet_data <- read.csv("Output//diet_data_clean.csv") # Diet compositions
 
 # Spread data
-spread1 <- diet_data %>% select(site, taxa, source, Mean) %>% spread(key = source, value = Mean)
+spread1 <- diet_data %>% dplyr::select(site, taxa, source, Mean) %>% spread(key = source, value = Mean)
 
 # Enter zeroes for sites without Hydrurus
 spread1$Hydrurus[is.na(spread1$Hydrurus)] <- 0
@@ -171,9 +171,9 @@ head(pred_dat)
 pred_dat$env_var <- as.factor(pred_dat$env_var)
 
 # Make dataframe long: gather environmental variables
-env_dat_long <- spread_env_m_dat %>% select(site, Biofilm, CPOM, Hydrurus, Tmean, chloride, SPC, TSS_g_L, PCA2) %>% 
+env_dat_long <- spread_env_m_dat %>% dplyr::select(site, Biofilm, CPOM, Hydrurus, Tmean, chloride, SPC, TSS_g_L, PCA2) %>% 
   gather(env_var, value, Tmean:PCA2) %>%
-  select(site, Biofilm, CPOM, Hydrurus, env_var, value) %>% 
+  dplyr::select(site, Biofilm, CPOM, Hydrurus, env_var, value) %>% 
   gather(source, Mean, Biofilm:Hydrurus)
 head(env_dat_long)
 env_dat_long$env_var <- as.factor(env_dat_long$env_var)

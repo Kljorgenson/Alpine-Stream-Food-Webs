@@ -118,7 +118,7 @@ df.b <- df.b %>% pivot_longer(cols = 1:3, names_to = "source") %>% unique()
 means.b <- spread_bm_envi_dat[,c(1,2,3,4,6)] %>% pivot_longer(cols = 2:4, names_to = "source")
 
 # Plot
-p100 <- means.b %>% ggplot() +
+p101 <- means.b %>% ggplot() +
   #geom_boxplot(aes(Primary_water_source, value, col = source)) + 
   geom_point(aes(Primary_water_source, value, col = source), cex = 2, position = position_dodge(width = 0.75)) +
   scale_fill_brewer(palette = "Dark2", guide = "none") +
@@ -132,6 +132,6 @@ p100 <- means.b %>% ggplot() +
   geom_errorbar(data = boot.ci.b, aes(x = Primary_water_source, y = p.50, ymin = p2.5, ymax = p97.5, col = source), width = 0.3, position = position_dodge(width = 0.75),  key_glyph = "point") +
   theme(legend.position = "bottom")
 
-p100
-ggsave("Output//Paper figures//Biomass by hydro.png", width = 3.5, height = 3.5)
+p101
+ggsave("Output//Paper figures//Biomass by hydro.png", width = 3.8, height = 3.5)
 

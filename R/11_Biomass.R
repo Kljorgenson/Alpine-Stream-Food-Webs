@@ -74,7 +74,7 @@ bm_envi_dat <- merge(Envi_data, bm_data, all = TRUE)
 
 ### Dirichlet regression
 # Organize data
-spread_bm_dat <- bm_envi_dat %>% select(site, source, biomass_per) %>% spread(key = source, value = biomass_per) 
+spread_bm_dat <- bm_envi_dat %>% dplyr::select(site, source, biomass_per) %>% spread(key = source, value = biomass_per) 
 spread_bm_dat
 spread_bm_envi_dat <- merge(spread_bm_dat, Envi_data, all = TRUE)
 spread_bm_envi_dat
@@ -182,7 +182,7 @@ p100 <- means %>% ggplot() +
   geom_boxplot(data = df, aes(WS, value, fill = name), width = 1, position = position_dodge(width = 0.75))
 
 p100
-ggsave("Output//Paper figures//Biomass by hydro.png", width = 5, height = 3.6)
+#ggsave("Output//Paper figures//Biomass by hydro.png", width = 5, height = 3.6)
 
 
 
@@ -213,9 +213,9 @@ head(pred_dat.b)
 pred_dat.b$env_var <- as.factor(pred_dat.b$env_var)
 
 # make diet dat long
-env_dat_long.b <- spread_bm_envi_dat %>% select(site, Biofilm, CPOM, Hydrurus, SPC, TSS_g_L, chloride) %>% 
+env_dat_long.b <- spread_bm_envi_dat %>% dplyr::select(site, Biofilm, CPOM, Hydrurus, SPC, TSS_g_L, chloride) %>% 
   gather(env_var, value, SPC:chloride) %>%
-  select(site, Biofilm, CPOM, Hydrurus, env_var, value) %>% 
+  dplyr::select(site, Biofilm, CPOM, Hydrurus, env_var, value) %>% 
   gather(source, Mean, Biofilm:Hydrurus)
 head(env_dat_long.b)
 env_dat_long.b$env_var <- as.factor(env_dat_long.b$env_var)
@@ -236,15 +236,15 @@ p <- ggplot(data = env_dat_long.b, aes(value, Mean, color = source)) +
   scale_color_brewer("Resource", palette = "Dark2") + theme_bw() + ylab("% Biomass") +
   scale_linetype_manual(values=c("dashed", "solid"), guide = "none") + xlab(NULL)
 p
-ggsave("Output//Paper figures//Dirichlet envi facet biomass.png", width = 5, height = 4)
+#ggsave("Output//Paper figures//Dirichlet envi facet biomass.png", width = 5, height = 4)
 
 
 
 
 ### Combined plot of diet proportions and biomass
-env_dat_long.b2 <- spread_bm_envi_dat %>% select(site, Biofilm, CPOM, Hydrurus, SPC, TSS_g_L, chloride, PCA2, Tmean) %>% 
+env_dat_long.b2 <- spread_bm_envi_dat %>% dplyr::select(site, Biofilm, CPOM, Hydrurus, SPC, TSS_g_L, chloride, PCA2, Tmean) %>% 
   gather(env_var, value, SPC:chloride) %>%
-  select(site, Biofilm, CPOM, Hydrurus, env_var, value) %>% 
+  dplyr::select(site, Biofilm, CPOM, Hydrurus, env_var, value) %>% 
   gather(source, Mean, Biofilm:Hydrurus)
 head(env_dat_long.b2)
 env_dat_long.b$env_var <- as.factor(env_dat_long.b2$env_var)
@@ -276,5 +276,5 @@ p <- ggplot(data = comb_env_dat_long, aes(value, Mean, color = source)) +
 
 p
 
-ggsave("Output//Paper figures//Dirichlet envi facet biomass and diet.png", width = 7, height = 3)
+ggsave("Output//Paper figures//Dirichlet envi facet biomass and diet.png", width = 7.5, height = 2.6, dpi = 600)
 
