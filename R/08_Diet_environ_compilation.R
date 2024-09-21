@@ -9,10 +9,10 @@ library(tidyr)
 library(stringr)
 
 ## Load estimated diet proportions
-data_diet <- read.csv("Output//diet_data_clean.csv")
+data_diet <- read.csv("Output/diet_data_clean.csv")
 
 ## Load environmental data
-Envi_data <- read.csv("Data//Environ_data.csv")
+Envi_data <- read.csv("Data/Environ_data.csv")
 
 # Load PCA data
 PCA_dat <- read.table("Output//PCA_dat.txt")
@@ -26,10 +26,10 @@ PCA_data
 Envi_data2 <- merge(Envi_data, PCA_data, all = TRUE)
 
 ## Load and merge diversity data
-Div_dat <- read.csv("Output//Div.csv") %>% select("site", "H", "D")
+Div_dat <- read.csv("Output/Div.csv") %>% select("site", "H", "D")
 Envi_data <- merge(Envi_data2, Div_dat)
 
-write.csv(Envi_data, "Output//Envi_data.csv")
+write.csv(Envi_data, "Output/Envi_data.csv")
 
 # Add zeros when Hydrurus was not present:
 site <- c("SFTC", "Grizzly", "Paintbrush")
@@ -49,7 +49,7 @@ Envi_data$variable <- rownames(Envi_data)
 env_diet_dat <- merge(data_diet_H0, Envi_data, all = TRUE) %>% filter(source != "NA", site != "NA") %>%
     filter(!site %in% "Gusher")
 
-write.csv(env_diet_dat, "Output//env_diet_dat.csv")
+write.csv(env_diet_dat, "Output/env_diet_dat.csv")
 
 
 

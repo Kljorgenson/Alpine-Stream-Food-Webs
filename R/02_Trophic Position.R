@@ -1,4 +1,4 @@
-### Calculate trophic position
+### Calculate trophic position (TP)
 # By Karen Jorgenson
 
 # Setup
@@ -7,12 +7,10 @@ library(dplyr)
 library(ggplot2)
 library(RColorBrewer)
 
-#setwd("C://Users//Karen Jorgenson//OneDrive - University of Wyoming//Collins Lab//Teton Alpine Streams//Github//Alpine-Stream-Food-Webs")
-
 ## Creat dataframe
 
 # load isotope data. Filter for invert, select columns, concatenate site and group
-dat <- read.csv("Data//Teton_Iso_Data_QC.csv")
+dat <- read.csv("Data/Teton_Iso_Data_QC.csv")
 TP_dat <- dat %>% filter(type == "invert") %>% select("group", "site", "d15N", "d13C", "FG") %>% mutate(group = as.factor(group), site = as.factor(site), FG = as.factor(FG)) %>% 
   data.frame() %>% na.omit() %>% rename(Site = "site", Group = "group", FG = "FG", d15N = "d15N", d13C = "d13C")
 
@@ -60,7 +58,7 @@ TP_calc <- 2 + (TP_dat$d15N - TP_dat$base_N)/TEF
 TP_dat$TP_calc <- TP_calc
 
 head(TP_dat)
-write.csv(TP_dat, "Output//TP_dat.csv")
+write.csv(TP_dat, "Output/TP_dat.csv")
 
 
 # Plot with all sites

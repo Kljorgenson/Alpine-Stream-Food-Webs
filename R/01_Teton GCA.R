@@ -40,7 +40,7 @@ GCA_dat %>% filter(site == "SFTC", taxa == "Sweltsa") %>% print(n=32)
 tail(GCA_data)
 unique(GCA_dat$taxa)
 
-write.csv(GCA_data, "Output//GCA_data.csv")
+write.csv(GCA_data, "Output/GCA_data.csv")
 
 
 # Plot with stacked bars
@@ -65,7 +65,7 @@ p_wrap <- GCA_data %>% filter(site != "Gusher", source != "Other") %>% ggplot(ae
 p_wrap
 
 
-png("Output//Paper figures//GCA facet stacked.png", width = 7, height = 8, units = "in", res = 200)
+png("Output/Paper figures/GCA facet stacked.png", width = 7, height = 8, units = "in", res = 200)
 g <- ggplot_gtable(ggplot_build(p_wrap))
 stripr <- which(grepl('strip-t', g$layout$name))
 fills <- c("#6baed6", "#6baed6", "#6baed6", "#6baed6", "#2171b5","#2171b5", "#08306b", "#08306b")

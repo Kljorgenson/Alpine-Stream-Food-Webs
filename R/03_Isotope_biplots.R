@@ -1,4 +1,4 @@
-### Teton Isotope Plots
+### Isotope biplots of raw data
 # By Karen Jorgenson
 
 
@@ -14,13 +14,13 @@ library(tidyverse)
 
 
 ## Organize data
-iso_dat <- read.csv("Data//Teton_Iso_Data_QC.csv")
+iso_dat <- read.csv("Data/Teton_Iso_Data_QC.csv")
 head(iso_dat)
 names(iso_dat)
 iso_inv <- iso_dat %>% filter(type == "invert")
 
 # Merge trophic position data
-dat_TP <- read.csv("Output//TP_dat.csv")  
+dat_TP <- read.csv("Output/TP_dat.csv")  
 head(dat_TP)
 iso_TP <- merge(iso_inv, dat_TP, by = c("d13C", "d15N"), all = TRUE ) %>% mutate(group = as.factor(group), site = as.factor(site)) 
 head(iso_TP)
@@ -63,7 +63,6 @@ food_dat <- iso_means %>% filter(type == "food", site == i) %>% select(group, mN
   filter(group %in% c("Algae_slime", "Hydrurus", "CPOM/Plant", "Biofilm", "Pikapoop"))
 
 food_dat$SEC - food_dat$mC
-#food_dat$group[3] <- "Small mammal feces" # Change source name for Grizzly
 
 # plot
 p0 <- ggplot(food_dat, aes( mC, mN)) + 
@@ -107,7 +106,7 @@ ggsave(plot = p0, width = 6, height = 5, dpi = 300, filename = paste( i, "new.pn
 }
 
 
-# Loop for SFTC
+# Loop for SFTC plot
 sites <- "SFTC"
 
 for(i in sites){

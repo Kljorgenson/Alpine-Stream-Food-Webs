@@ -1,165 +1,165 @@
 "","source","taxa","site","n","per_assim","sd"
-"1","animal","Allomyia","AK Basin",3,0,NA
-"2","animal","Allomyia","Wind Cave",2,0,NA
-"3","animal","Ameletidae","AK Basin",3,0,NA
-"4","animal","Ameletidae","Delta",4,3.03276193204966,NA
-"5","animal","Ameletidae","SFTC",1,100,NA
-"6","animal","Baetis","Delta",2,0,NA
-"7","animal","Cynigmula","AK Basin",1,0,NA
-"8","animal","Cynigmula","SFTC",7,16.5163146030522,NA
-"9","animal","Drunella","NFTC",1,90.9275185367386,NA
-"10","animal","Epeorus","SFTC",5,20,NA
-"11","animal","Heldon","Wind Cave",3,0,NA
-"12","animal","Homophylax","AK Basin",1,0,NA
-"13","animal","Homophylax","Delta",1,0,NA
-"14","animal","Homophylax","Grizzly",7,8.56959598701216,NA
-"15","animal","Homophylax","NFTC",6,0,NA
-"16","animal","Homophylax","Paintbrush",2,12.1971628083217,NA
-"17","animal","Homophylax","Skillet",2,0,NA
-"18","animal","Lednia","Delta",4,0,NA
-"19","animal","Lednia","Wind Cave",4,0,NA
-"20","animal","Megarcys","AK Basin",5,6.1144307268927,NA
-"21","animal","Megarcys","Delta",3,59.7244501201767,NA
-"22","animal","Megarcys","NFTC",3,87.8494336140238,NA
-"23","animal","Megarcys","SFTC",2,0,NA
-"24","animal","Megarcys","Wind Cave",7,22.271290405205,NA
-"25","animal","Midges","Delta",4,0,NA
-"26","animal","Midges","Grizzly",4,0,NA
-"27","animal","Midges","Paintbrush",3,0,NA
-"28","animal","Midges","Skillet",1,0,NA
-"29","animal","Midges","Wind Cave",2,0,NA
-"30","animal","Prosimulium","Grizzly",7,15.4423219510721,NA
-"31","animal","Prosimulium","NFTC",4,3.78918923919051,NA
-"32","animal","Prosimulium","Paintbrush",5,0,NA
-"33","animal","Prosimulium","SFTC",4,0,NA
-"34","animal","Prosimulium","Skillet",4,0,NA
-"35","animal","Rhyacophila","Delta",5,80,NA
-"36","animal","Rhyacophila","Grizzly",2,50,NA
-"37","animal","Rhyacophila","NFTC",4,98.7472336841298,NA
-"38","animal","Rhyacophila","SFTC",5,68.2903067628395,NA
-"39","animal","Rhyacophila","Skillet",1,100,NA
-"40","animal","Rhyacophila","Wind Cave",5,88.3142817013799,NA
-"41","animal","Rithrogena","AK Basin",3,0,NA
-"42","animal","Rithrogena","SFTC",2,0,NA
-"43","animal","Sweltsa","AK Basin",4,33.9646208986205,NA
-"44","animal","Sweltsa","SFTC",3,44.1646867455622,NA
-"45","animal","Tipula","AK Basin",4,0,NA
-"46","animal","Tipula","Delta",1,0,NA
-"47","animal","Tipula","SFTC",6,0,NA
-"48","animal","Zapada","AK Basin",3,0,NA
-"49","animal","Zapada","Delta",2,0,NA
-"50","animal","Zapada","Gusher",1,0,NA
-"51","animal","Zapada","Wind Cave",6,0,NA
-"52","diatoms","Allomyia","AK Basin",3,100,NA
-"53","diatoms","Allomyia","Wind Cave",2,98.4668581310856,NA
-"54","diatoms","Ameletidae","AK Basin",3,99.9510146433083,NA
-"55","diatoms","Ameletidae","Delta",4,96.9672380679503,NA
-"56","diatoms","Ameletidae","SFTC",1,0,NA
-"57","diatoms","Baetis","Delta",2,100,NA
-"58","diatoms","Cynigmula","AK Basin",1,100,NA
-"59","diatoms","Cynigmula","SFTC",7,82.4168996769548,NA
-"60","diatoms","Drunella","NFTC",1,9.0724814632614,NA
-"61","diatoms","Epeorus","SFTC",5,79.8304055474176,NA
-"62","diatoms","Heldon","Wind Cave",3,98.9980351665891,NA
-"63","diatoms","Homophylax","AK Basin",1,100,NA
-"64","diatoms","Homophylax","Delta",1,91.0647450586959,NA
-"65","diatoms","Homophylax","Grizzly",7,8.91606995495915,NA
-"66","diatoms","Homophylax","NFTC",6,70.3870799892927,NA
-"67","diatoms","Homophylax","Paintbrush",2,70.6086460636345,NA
-"68","diatoms","Homophylax","Skillet",2,0,NA
-"69","diatoms","Lednia","Delta",4,59.2773175999903,NA
-"70","diatoms","Lednia","Wind Cave",4,87.7227265956038,NA
-"71","diatoms","Megarcys","AK Basin",5,92.8133919747338,NA
-"72","diatoms","Megarcys","Delta",3,40.2755498798233,NA
-"73","diatoms","Megarcys","NFTC",3,12.1505663859762,NA
-"74","diatoms","Megarcys","SFTC",2,100,NA
-"75","diatoms","Megarcys","Wind Cave",7,73.3875074578402,NA
-"76","diatoms","Midges","Delta",4,93.5901079519298,NA
-"77","diatoms","Midges","Grizzly",4,43.1876189059478,NA
-"78","diatoms","Midges","Paintbrush",3,100,NA
-"79","diatoms","Midges","Skillet",1,0,NA
-"80","diatoms","Midges","Wind Cave",2,86.7233544526166,NA
-"81","diatoms","Prosimulium","Grizzly",7,78.6713778391472,NA
-"82","diatoms","Prosimulium","NFTC",4,96.2108107608095,NA
-"83","diatoms","Prosimulium","Paintbrush",5,99.2566976663936,NA
-"84","diatoms","Prosimulium","SFTC",4,99.6524847911416,NA
-"85","diatoms","Prosimulium","Skillet",4,88.4606375428251,NA
-"86","diatoms","Rhyacophila","Delta",5,0,NA
-"87","diatoms","Rhyacophila","Grizzly",2,39.47520621325,NA
-"88","diatoms","Rhyacophila","NFTC",4,1.14148190150121,NA
-"89","diatoms","Rhyacophila","SFTC",5,31.7096932371605,NA
-"90","diatoms","Rhyacophila","Skillet",1,0,NA
-"91","diatoms","Rhyacophila","Wind Cave",5,11.176411278684,NA
-"92","diatoms","Rithrogena","AK Basin",3,100,NA
-"93","diatoms","Rithrogena","SFTC",2,100,NA
-"94","diatoms","Sweltsa","AK Basin",4,66.0353791013795,NA
-"95","diatoms","Sweltsa","SFTC",3,55.8353132544378,NA
-"96","diatoms","Tipula","AK Basin",4,90.1692010978105,NA
-"97","diatoms","Tipula","Delta",1,13.4952193503911,NA
-"98","diatoms","Tipula","SFTC",6,36.3447703864763,NA
-"99","diatoms","Zapada","AK Basin",3,95.115230597895,NA
-"100","diatoms","Zapada","Delta",2,84.2283466108794,NA
-"101","diatoms","Zapada","Gusher",1,64.1130169321973,NA
-"102","diatoms","Zapada","Wind Cave",6,92.3501788045343,NA
-"103","fil. algae","Cynigmula","SFTC",7,0,NA
-"104","fil. algae","Epeorus","SFTC",5,0,NA
-"105","fil. algae","Megarcys","SFTC",2,0,NA
-"106","fil. algae","Prosimulium","SFTC",4,0.0166528565704603,NA
-"107","fil. algae","Rithrogena","SFTC",2,0,NA
-"108","fil. algae","Tipula","SFTC",6,0.268348565499771,NA
-"109","Hydrurus","Allomyia","AK Basin",3,0,NA
-"110","Hydrurus","Allomyia","Wind Cave",2,1.34761225895559,NA
-"111","Hydrurus","Ameletidae","AK Basin",3,0,NA
-"112","Hydrurus","Ameletidae","Delta",4,0,NA
-"113","Hydrurus","Ameletidae","SFTC",1,0,NA
-"114","Hydrurus","Baetis","Delta",2,0,NA
-"115","Hydrurus","Cynigmula","AK Basin",1,0,NA
-"116","Hydrurus","Cynigmula","SFTC",7,0,NA
-"117","Hydrurus","Drunella","NFTC",1,0,NA
-"118","Hydrurus","Epeorus","SFTC",5,0,NA
-"119","Hydrurus","Heldon","Wind Cave",3,0,NA
-"120","Hydrurus","Homophylax","AK Basin",1,0,NA
-"121","Hydrurus","Homophylax","Delta",1,0,NA
-"122","Hydrurus","Homophylax","Grizzly",7,0,NA
-"123","Hydrurus","Homophylax","NFTC",6,0,NA
-"124","Hydrurus","Homophylax","Paintbrush",2,0,NA
-"125","Hydrurus","Homophylax","Skillet",2,0,NA
-"126","Hydrurus","Lednia","Delta",4,0,NA
-"127","Hydrurus","Lednia","Wind Cave",4,0,NA
-"128","Hydrurus","Megarcys","AK Basin",5,0.733653610382104,NA
-"129","Hydrurus","Megarcys","Delta",3,0,NA
-"130","Hydrurus","Megarcys","NFTC",3,0,NA
-"131","Hydrurus","Megarcys","SFTC",2,0,NA
-"132","Hydrurus","Megarcys","Wind Cave",7,4.28040732224819,NA
-"133","Hydrurus","Midges","Delta",4,0,NA
-"134","Hydrurus","Midges","Grizzly",4,0,NA
-"135","Hydrurus","Midges","Paintbrush",3,0,NA
-"136","Hydrurus","Midges","Skillet",1,0,NA
-"137","Hydrurus","Midges","Wind Cave",2,12.7278776865427,NA
-"138","Hydrurus","Prosimulium","Grizzly",7,0,NA
-"139","Hydrurus","Prosimulium","NFTC",4,0,NA
-"140","Hydrurus","Prosimulium","Paintbrush",5,0,NA
-"141","Hydrurus","Prosimulium","SFTC",4,0,NA
-"142","Hydrurus","Prosimulium","Skillet",4,0,NA
-"143","Hydrurus","Rhyacophila","Delta",5,0,NA
-"144","Hydrurus","Rhyacophila","Grizzly",2,0,NA
-"145","Hydrurus","Rhyacophila","NFTC",4,0,NA
-"146","Hydrurus","Rhyacophila","SFTC",5,0,NA
-"147","Hydrurus","Rhyacophila","Skillet",1,0,NA
-"148","Hydrurus","Rhyacophila","Wind Cave",5,0,NA
-"149","Hydrurus","Rithrogena","AK Basin",3,0,NA
-"150","Hydrurus","Rithrogena","SFTC",2,0,NA
-"151","Hydrurus","Sweltsa","AK Basin",4,0,NA
-"152","Hydrurus","Sweltsa","SFTC",3,0,NA
-"153","Hydrurus","Tipula","AK Basin",4,0,NA
-"154","Hydrurus","Tipula","Delta",1,0,NA
-"155","Hydrurus","Tipula","SFTC",6,0,NA
-"156","Hydrurus","Zapada","AK Basin",3,0,NA
-"157","Hydrurus","Zapada","Delta",2,0,NA
-"158","Hydrurus","Zapada","Gusher",1,0,NA
-"159","Hydrurus","Zapada","Wind Cave",6,0,NA
-"160","Other","Cynigmula","SFTC",1,NA,NA
-"161","Other","Tipula","AK Basin",1,NA,NA
+"1","Hydrurus","Allomyia","AK Basin",3,0,NA
+"2","Hydrurus","Allomyia","Wind Cave",2,1.34761225895559,NA
+"3","Hydrurus","Ameletidae","AK Basin",3,0,NA
+"4","Hydrurus","Ameletidae","Delta",4,0,NA
+"5","Hydrurus","Ameletidae","SFTC",1,0,NA
+"6","Hydrurus","Baetis","Delta",2,0,NA
+"7","Hydrurus","Cynigmula","AK Basin",1,0,NA
+"8","Hydrurus","Cynigmula","SFTC",7,0,NA
+"9","Hydrurus","Drunella","NFTC",1,0,NA
+"10","Hydrurus","Epeorus","SFTC",5,0,NA
+"11","Hydrurus","Heldon","Wind Cave",3,0,NA
+"12","Hydrurus","Homophylax","AK Basin",1,0,NA
+"13","Hydrurus","Homophylax","Delta",1,0,NA
+"14","Hydrurus","Homophylax","Grizzly",7,0,NA
+"15","Hydrurus","Homophylax","NFTC",6,0,NA
+"16","Hydrurus","Homophylax","Paintbrush",2,0,NA
+"17","Hydrurus","Homophylax","Skillet",2,0,NA
+"18","Hydrurus","Lednia","Delta",4,0,NA
+"19","Hydrurus","Lednia","Wind Cave",4,0,NA
+"20","Hydrurus","Megarcys","AK Basin",5,0.733653610382104,NA
+"21","Hydrurus","Megarcys","Delta",3,0,NA
+"22","Hydrurus","Megarcys","NFTC",3,0,NA
+"23","Hydrurus","Megarcys","SFTC",2,0,NA
+"24","Hydrurus","Megarcys","Wind Cave",7,4.28040732224819,NA
+"25","Hydrurus","Midges","Delta",4,0,NA
+"26","Hydrurus","Midges","Grizzly",4,0,NA
+"27","Hydrurus","Midges","Paintbrush",3,0,NA
+"28","Hydrurus","Midges","Skillet",1,0,NA
+"29","Hydrurus","Midges","Wind Cave",2,12.7278776865427,NA
+"30","Hydrurus","Prosimulium","Grizzly",7,0,NA
+"31","Hydrurus","Prosimulium","NFTC",4,0,NA
+"32","Hydrurus","Prosimulium","Paintbrush",5,0,NA
+"33","Hydrurus","Prosimulium","SFTC",4,0,NA
+"34","Hydrurus","Prosimulium","Skillet",4,0,NA
+"35","Hydrurus","Rhyacophila","Delta",5,0,NA
+"36","Hydrurus","Rhyacophila","Grizzly",2,0,NA
+"37","Hydrurus","Rhyacophila","NFTC",4,0,NA
+"38","Hydrurus","Rhyacophila","SFTC",5,0,NA
+"39","Hydrurus","Rhyacophila","Skillet",1,0,NA
+"40","Hydrurus","Rhyacophila","Wind Cave",5,0,NA
+"41","Hydrurus","Rithrogena","AK Basin",3,0,NA
+"42","Hydrurus","Rithrogena","SFTC",2,0,NA
+"43","Hydrurus","Sweltsa","AK Basin",4,0,NA
+"44","Hydrurus","Sweltsa","SFTC",3,0,NA
+"45","Hydrurus","Tipula","AK Basin",4,0,NA
+"46","Hydrurus","Tipula","Delta",1,0,NA
+"47","Hydrurus","Tipula","SFTC",6,0,NA
+"48","Hydrurus","Zapada","AK Basin",3,0,NA
+"49","Hydrurus","Zapada","Delta",2,0,NA
+"50","Hydrurus","Zapada","Gusher",1,0,NA
+"51","Hydrurus","Zapada","Wind Cave",6,0,NA
+"52","Other","Cynigmula","SFTC",1,NA,NA
+"53","Other","Tipula","AK Basin",1,NA,NA
+"54","animal","Allomyia","AK Basin",3,0,NA
+"55","animal","Allomyia","Wind Cave",2,0,NA
+"56","animal","Ameletidae","AK Basin",3,0,NA
+"57","animal","Ameletidae","Delta",4,3.03276193204966,NA
+"58","animal","Ameletidae","SFTC",1,100,NA
+"59","animal","Baetis","Delta",2,0,NA
+"60","animal","Cynigmula","AK Basin",1,0,NA
+"61","animal","Cynigmula","SFTC",7,16.5163146030522,NA
+"62","animal","Drunella","NFTC",1,90.9275185367386,NA
+"63","animal","Epeorus","SFTC",5,20,NA
+"64","animal","Heldon","Wind Cave",3,0,NA
+"65","animal","Homophylax","AK Basin",1,0,NA
+"66","animal","Homophylax","Delta",1,0,NA
+"67","animal","Homophylax","Grizzly",7,8.56959598701216,NA
+"68","animal","Homophylax","NFTC",6,0,NA
+"69","animal","Homophylax","Paintbrush",2,12.1971628083217,NA
+"70","animal","Homophylax","Skillet",2,0,NA
+"71","animal","Lednia","Delta",4,0,NA
+"72","animal","Lednia","Wind Cave",4,0,NA
+"73","animal","Megarcys","AK Basin",5,6.1144307268927,NA
+"74","animal","Megarcys","Delta",3,59.7244501201767,NA
+"75","animal","Megarcys","NFTC",3,87.8494336140238,NA
+"76","animal","Megarcys","SFTC",2,0,NA
+"77","animal","Megarcys","Wind Cave",7,22.271290405205,NA
+"78","animal","Midges","Delta",4,0,NA
+"79","animal","Midges","Grizzly",4,0,NA
+"80","animal","Midges","Paintbrush",3,0,NA
+"81","animal","Midges","Skillet",1,0,NA
+"82","animal","Midges","Wind Cave",2,0,NA
+"83","animal","Prosimulium","Grizzly",7,15.4423219510721,NA
+"84","animal","Prosimulium","NFTC",4,3.78918923919051,NA
+"85","animal","Prosimulium","Paintbrush",5,0,NA
+"86","animal","Prosimulium","SFTC",4,0,NA
+"87","animal","Prosimulium","Skillet",4,0,NA
+"88","animal","Rhyacophila","Delta",5,80,NA
+"89","animal","Rhyacophila","Grizzly",2,50,NA
+"90","animal","Rhyacophila","NFTC",4,98.7472336841298,NA
+"91","animal","Rhyacophila","SFTC",5,68.2903067628395,NA
+"92","animal","Rhyacophila","Skillet",1,100,NA
+"93","animal","Rhyacophila","Wind Cave",5,88.3142817013799,NA
+"94","animal","Rithrogena","AK Basin",3,0,NA
+"95","animal","Rithrogena","SFTC",2,0,NA
+"96","animal","Sweltsa","AK Basin",4,33.9646208986205,NA
+"97","animal","Sweltsa","SFTC",3,44.1646867455622,NA
+"98","animal","Tipula","AK Basin",4,0,NA
+"99","animal","Tipula","Delta",1,0,NA
+"100","animal","Tipula","SFTC",6,0,NA
+"101","animal","Zapada","AK Basin",3,0,NA
+"102","animal","Zapada","Delta",2,0,NA
+"103","animal","Zapada","Gusher",1,0,NA
+"104","animal","Zapada","Wind Cave",6,0,NA
+"105","diatoms","Allomyia","AK Basin",3,100,NA
+"106","diatoms","Allomyia","Wind Cave",2,98.4668581310856,NA
+"107","diatoms","Ameletidae","AK Basin",3,99.9510146433083,NA
+"108","diatoms","Ameletidae","Delta",4,96.9672380679503,NA
+"109","diatoms","Ameletidae","SFTC",1,0,NA
+"110","diatoms","Baetis","Delta",2,100,NA
+"111","diatoms","Cynigmula","AK Basin",1,100,NA
+"112","diatoms","Cynigmula","SFTC",7,82.4168996769548,NA
+"113","diatoms","Drunella","NFTC",1,9.0724814632614,NA
+"114","diatoms","Epeorus","SFTC",5,79.8304055474176,NA
+"115","diatoms","Heldon","Wind Cave",3,98.9980351665891,NA
+"116","diatoms","Homophylax","AK Basin",1,100,NA
+"117","diatoms","Homophylax","Delta",1,91.0647450586959,NA
+"118","diatoms","Homophylax","Grizzly",7,8.91606995495915,NA
+"119","diatoms","Homophylax","NFTC",6,70.3870799892927,NA
+"120","diatoms","Homophylax","Paintbrush",2,70.6086460636345,NA
+"121","diatoms","Homophylax","Skillet",2,0,NA
+"122","diatoms","Lednia","Delta",4,59.2773175999903,NA
+"123","diatoms","Lednia","Wind Cave",4,87.7227265956038,NA
+"124","diatoms","Megarcys","AK Basin",5,92.8133919747338,NA
+"125","diatoms","Megarcys","Delta",3,40.2755498798233,NA
+"126","diatoms","Megarcys","NFTC",3,12.1505663859762,NA
+"127","diatoms","Megarcys","SFTC",2,100,NA
+"128","diatoms","Megarcys","Wind Cave",7,73.3875074578402,NA
+"129","diatoms","Midges","Delta",4,93.5901079519298,NA
+"130","diatoms","Midges","Grizzly",4,43.1876189059478,NA
+"131","diatoms","Midges","Paintbrush",3,100,NA
+"132","diatoms","Midges","Skillet",1,0,NA
+"133","diatoms","Midges","Wind Cave",2,86.7233544526166,NA
+"134","diatoms","Prosimulium","Grizzly",7,78.6713778391472,NA
+"135","diatoms","Prosimulium","NFTC",4,96.2108107608095,NA
+"136","diatoms","Prosimulium","Paintbrush",5,99.2566976663936,NA
+"137","diatoms","Prosimulium","SFTC",4,99.6524847911416,NA
+"138","diatoms","Prosimulium","Skillet",4,88.4606375428251,NA
+"139","diatoms","Rhyacophila","Delta",5,0,NA
+"140","diatoms","Rhyacophila","Grizzly",2,39.47520621325,NA
+"141","diatoms","Rhyacophila","NFTC",4,1.14148190150121,NA
+"142","diatoms","Rhyacophila","SFTC",5,31.7096932371605,NA
+"143","diatoms","Rhyacophila","Skillet",1,0,NA
+"144","diatoms","Rhyacophila","Wind Cave",5,11.176411278684,NA
+"145","diatoms","Rithrogena","AK Basin",3,100,NA
+"146","diatoms","Rithrogena","SFTC",2,100,NA
+"147","diatoms","Sweltsa","AK Basin",4,66.0353791013795,NA
+"148","diatoms","Sweltsa","SFTC",3,55.8353132544378,NA
+"149","diatoms","Tipula","AK Basin",4,90.1692010978105,NA
+"150","diatoms","Tipula","Delta",1,13.4952193503911,NA
+"151","diatoms","Tipula","SFTC",6,36.3447703864763,NA
+"152","diatoms","Zapada","AK Basin",3,95.115230597895,NA
+"153","diatoms","Zapada","Delta",2,84.2283466108794,NA
+"154","diatoms","Zapada","Gusher",1,64.1130169321973,NA
+"155","diatoms","Zapada","Wind Cave",6,92.3501788045343,NA
+"156","fil. algae","Cynigmula","SFTC",7,0,NA
+"157","fil. algae","Epeorus","SFTC",5,0,NA
+"158","fil. algae","Megarcys","SFTC",2,0,NA
+"159","fil. algae","Prosimulium","SFTC",4,0.0166528565704603,NA
+"160","fil. algae","Rithrogena","SFTC",2,0,NA
+"161","fil. algae","Tipula","SFTC",6,0.268348565499771,NA
 "162","plant","Allomyia","AK Basin",3,0,NA
 "163","plant","Allomyia","Wind Cave",2,0.18552960995879,NA
 "164","plant","Ameletidae","AK Basin",3,0.0489853566916824,NA

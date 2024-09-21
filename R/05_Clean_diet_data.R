@@ -10,7 +10,7 @@ library(stringr)
 library(grid)
 
 ## Load estimated diet proportions
-data_di <- read.csv("Output//Diet_proportions_all.csv")
+data_di <- read.csv("Output/Diet_proportions_all.csv")
 data_di$site <- as.factor(data_di$site) 
 levels(data_di$site) <- c("AK Basin","Cloudveil","Delta","Grizzly","NFTC", "Paintbrush", "SFTC", "Skillet", "Wind Cave" )
 data_di %>% filter(site == "Grizzly")
@@ -24,7 +24,7 @@ data_diet <- data_di %>% mutate(source = case_when(source %in% c("CPOM/Plant", "
 
 head(data_diet)
 
-write.csv(data_diet, "Output//diet_data_clean.csv")
+write.csv(data_diet, "Output/diet_data_clean.csv")
 
 
 ### Plot of all diet proportions across sites
@@ -47,7 +47,8 @@ df <- data.frame(site = c(rep("Cloudveil", length(a$taxa)), rep("Delta", length(
                  source = rep("CPOM", 99))
 
 df2 <- full_join(data_diet, df)%>% na.omit()
-# Create ggplot
+
+## Create ggplot plot
 p_wrap <- df2  %>% ggplot(aes(Mean, reorder(taxa, desc(taxa)), color = source)) + geom_point() +
   facet_grid(~ site, labeller = labeller(site = site_labs), nrow = 3, space = "fixed", scales = "free_y") + geom_errorbar(aes(xmin=Mean-SD, xmax=Mean+SD), width=1) +
   scale_color_manual(name = "Resource", labels = c("Biofilm", "CPOM", expression(italic("Hydrurus"))), values = c("#1B9E77", "#D95F02", "#7570B3", "#66A61E", "#E6AB02", "#A6761D")) +

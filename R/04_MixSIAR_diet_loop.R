@@ -1,7 +1,7 @@
-### MixSIAR loop and output for all sites
+### MixSIAR model loop and output for all sites
 # By Karen Jorgenson
 
-
+# Setup
 library(plyr)
 library(dplyr) # This order to make group_by work right
 library(MixSIAR)
@@ -14,11 +14,11 @@ library(here)
 
 ### Create data frame
 # Load raw isotope data
-iso_dat <- read.csv(here("Data//Teton_Iso_Data_QC.csv")) 
+iso_dat <- read.csv(here("Data/Teton_Iso_Data_QC.csv")) 
 head(iso_dat)
 
 # Merge trophic position data
-dat_TP <- read.csv(here("Output//TP_dat.csv"))  
+dat_TP <- read.csv(here("Output/TP_dat.csv"))  
 head(dat_TP)
 dat_2 <- merge(iso_dat, dat_TP, by = c("d13C", "d15N"), all = TRUE ) %>% mutate(group = as.factor(group), site = as.factor(site)) 
 head(dat_2)
@@ -45,12 +45,15 @@ iso_means %>% ungroup() %>% filter(group == "Biofilm") %>% summarize(max = max(M
                                                                         min = min(Meand13C))
 iso_means %>% ungroup() %>% filter(group == "Hydrurus") %>% summarize(max = max(Meand13C),
                                                                         min = min(Meand13C))
-### MixSIAR loop
+
+
+
+### MixSIAR model loop
 
 site <- c("Wind Cave", "Skillet", "SFTC", "AK Basin", "Delta", "NFTC", "Cloudveil", "Grizzly", "Paintbrush") # Select all sites
 site <- c("Delta", "Wind Cave") # Select individual site
 
-#AK, Paintbrush, SFTC, Grizzly, Skillet
+# AK, Paintbrush, SFTC, Grizzly, Skillet
 for( i in site){
 
 # filter for site
@@ -147,5 +150,5 @@ names(data_diet) <- c("site", "taxa", "source", "Mean", "SD",  "p2.5", "p5", "p2
 data_diet %>% filter(site == "Grizzly")
 
 # Export data
-write.csv(data_diet, "Output//Diet_proportions_all.csv")
+write.csv(data_diet, "Output/Diet_proportions_all.csv")
 

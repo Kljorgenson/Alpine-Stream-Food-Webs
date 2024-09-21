@@ -12,7 +12,7 @@ library(RColorBrewer)
 library(ggpubr)
 
 ### Environmental PCA
-PCA <- read.csv("Data//Environ_data.csv")
+PCA <- read.csv("Data/Environ_data.csv")
 names(PCA)
 PCA_d <- PCA %>% select("site", "Primary_water_source","Elevation", "Tmean", "Tmax", "DO_mg_L", "SPC",  "TSS_g_L", "Chla_mg_m2", "pH", "fluoride", "chloride", "nitrate", "sulfate")
 names(PCA_d)
@@ -21,7 +21,7 @@ PCA_1 <- prcomp(PCA_d[,c(4:8,10:14)],scale. = TRUE) # select variables
 ind <- get_pca_ind(PCA_1)
 ind
 ind$coord
-write.table(ind$coord, "Output//PCA_dat.txt")
+write.table(ind$coord, "Output/PCA_dat.txt")
 
 # Environmental PCA plot
 p1 <- autoplot(PCA_1, data = PCA_d, colour = 'Primary_water_source', loadings = TRUE, loadings.label = FALSE, loadings.colour = 1, size = 5) +
@@ -63,7 +63,7 @@ PCA_s <- prcomp(diet_dat[,2:4], center = TRUE,scale. = TRUE)
 ind <- get_pca_ind(PCA_s)
 ind
 ind$coord
-write.table(ind$coord, "Output//PCA_s_dat.txt")
+write.table(ind$coord, "Output/PCA_s_dat.txt")
 
 # Plot diet PCA
 p2 <- autoplot(PCA_s, data = diet_dat, colour = 'Primary_Water_Source', label = FALSE, loadings = TRUE, loadings.label = FALSE, loadings.colour = 1, size = 5) +
@@ -82,4 +82,4 @@ ggsave("Output/Paper figures/legent.png", width = 6, height = 4, dpi=400)
 ggarrange(p2, p1, ncol=2, common.legend = TRUE, legend="right", labels = "auto",
           label.x = 0,
           label.y = 1)
-ggsave("Output//Paper figures//PCA both.png", width = 10, height = 4)                                                                             
+ggsave("Output/Paper figures//PCA both.png", width = 10, height = 4)                                                                             

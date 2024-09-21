@@ -8,8 +8,8 @@ library(tidyverse)
 library(vegan)
 
 # Load data
-div_d <- read.csv("Data//TetonInverts2020.csv") # Surber sample data
-class_dat <- read.csv("Data//Taxa classification.csv") # Taxaonomic classifications
+div_d <- read.csv("Data/TetonInverts2020.csv") # Surber sample data
+class_dat <- read.csv("Data/Taxa classification.csv") # Taxaonomic classifications
 
 # Add order and family to Surber samples data
 div_dat <- merge(div_d, class_dat) # Merge taxaonomic classifications with Surber sample data
@@ -52,4 +52,4 @@ D_dat
 div_ind <- merge(H_dat, D_dat)
 
 # Save dataframe with D and H
-write.csv(div_ind, "Output//Div.csv")
+write.csv(div_ind, "Output/Div.csv")
